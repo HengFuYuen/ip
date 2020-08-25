@@ -1,10 +1,10 @@
 public class Task {
 
     protected boolean isDone;
-    protected String command;
+    protected String description;
 
-    public Task (String command) {
-        this.command = command;
+    public Task(String command) {
+        this.description = command;
         this.isDone = false;
     }
 
@@ -12,8 +12,8 @@ public class Task {
         this.isDone = true;
     }
 
-    public String getCommand() {
-        return this.command;
+    public String getDescription() {
+        return this.description;
     }
 
     public String getStatusIcon() {

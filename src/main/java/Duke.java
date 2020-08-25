@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Duke {
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -13,6 +14,8 @@ public class Duke {
         System.out.println("____________________________________________________________");
 
         Scanner scanner = new Scanner(System.in);
+        String[] commands = new String[100];
+        int commandNum = 0;
 
         while (scanner.hasNext()) {
             String command = scanner.nextLine();
@@ -21,10 +24,16 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!");
                 System.out.println("____________________________________________________________");
                 break;
+            } else if (command.equals("list")){
+                for (int i = 0; i < commandNum; i++) {
+                    System.out.println((i + 1) + ". " + commands[i]);
+                }
             } else {
-                System.out.println(command);
-                System.out.println("____________________________________________________________");
+                commands[commandNum] = command;
+                commandNum++;
+                System.out.println("added: " + command);
             }
+            System.out.println("____________________________________________________________");
         }
     }
 }

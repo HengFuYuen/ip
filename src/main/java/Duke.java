@@ -8,7 +8,6 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-
         System.out.println("____________________________________________________________");
         System.out.println("Hello! I'm Duke" + System.lineSeparator() + "What can I do for you?");
         System.out.println("____________________________________________________________");
@@ -28,19 +27,32 @@ public class Duke {
                 System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < taskNum; i++) {
                     Task currentTask = tasks[i];
-                    System.out.println((i + 1) + ".[" + currentTask.getStatusIcon() + "] "
-                            + currentTask.getDescription());
+                    System.out.println((i + 1) + "." + currentTask);
                 }
             } else if (command.startsWith("done")) {
                 int finishedTaskNum = Integer.parseInt(command.replace("done ", "")) - 1;
                 Task finishedTask = tasks[finishedTaskNum];
                 finishedTask.markAsDone();
                 System.out.println("Nice! I've marked this task as done:" + System.lineSeparator()
-                        + "  [" + finishedTask.getStatusIcon() + "] " + finishedTask.getDescription());
+                        + "  " + finishedTask);
             } else {
-                tasks[taskNum] = new Task(command);
+                Task task;
+                if (command.startsWith("todo")) {
+                    String getDesciption = command.substring(5);
+                    task = new Todo(getDesciption);
+                } else if (command.startsWith("deadline")) {
+                    String getDesciptionAndTime = command.substring(9);
+                    String[] splitDescriptionAndTime = getDesciptionAndTime.split(" /by ");
+                    task = new Deadline(splitDescriptionAndTime[0], splitDescriptionAndTime[1]);
+                } else {
+                    String getDesciptionAndTime = command.substring(6);
+                    String[] splitDescriptionAndTime = getDesciptionAndTime.split(" /at ");
+                    task = new Event(splitDescriptionAndTime[0], splitDescriptionAndTime[1]);
+                }
+                tasks[taskNum] = task;
                 taskNum++;
-                System.out.println("added: " + command);
+                System.out.println("Got it. I've added this task:" + System.lineSeparator() + "  " + task
+                        + System.lineSeparator() + "Now you have " + (taskNum) + " task(s) in the list.");
             }
             System.out.println("____________________________________________________________");
         }

@@ -44,10 +44,12 @@ public class Duke {
                     String getDesciptionAndTime = command.substring(9);
                     String[] splitDescriptionAndTime = getDesciptionAndTime.split(" /by ");
                     task = new Deadline(splitDescriptionAndTime[0], splitDescriptionAndTime[1]);
-                } else {
+                } else if (command.startsWith("event")) {
                     String getDesciptionAndTime = command.substring(6);
                     String[] splitDescriptionAndTime = getDesciptionAndTime.split(" /at ");
                     task = new Event(splitDescriptionAndTime[0], splitDescriptionAndTime[1]);
+                } else {
+                    task = new Task(command);
                 }
                 tasks[taskNum] = task;
                 taskNum++;

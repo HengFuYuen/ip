@@ -4,20 +4,20 @@ public class Task {
     protected String description;
 
     public Task(String command) {
-        this.description = command;
-        this.isDone = false;
+        description = command;
+        isDone = false;
     }
 
     public void markAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     public String getStatusIcon() {
-        return (this.isDone ? "\u2713" : "\u2718");
+        return (isDone ? "\u2713" : "\u2718");
     }
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return "[" + getStatusIcon() + "] " + description;
     }
 }

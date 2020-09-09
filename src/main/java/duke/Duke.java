@@ -1,7 +1,24 @@
+package duke;
+
 /**
  * Solution below adapted from
  * https://github.com/nus-cs2113-AY2021S1/contacts/blob/master/src/main/java/Contacts1.java
  */
+
+import duke.exception.DukeException;
+import duke.exception.TaskDescriptionNotFoundException;
+import duke.exception.TodoDescriptionNotFoundException;
+import duke.exception.DeadlineDescriptionNotFoundException;
+import duke.exception.DeadlineTimeNotFoundException;
+import duke.exception.EventDescriptionNotFoundException;
+import duke.exception.EventTimeNotFoundException;
+import duke.exception.NoTaskInTaskListException;
+import duke.exception.TaskToMarkAsDoneInvalidException;
+import duke.exception.TaskToMarkAsDoneNotFoundException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 import java.util.Scanner;
 
@@ -20,7 +37,7 @@ public class Duke {
             + "deadline> /by <time it is due>";
     private static final String eventInputFormat = "  To add an event: event <description of event> /at "
             + "<the event time>";
-    private static final String exitDukeInputFormat = "  To exit Duke: bye";
+    private static final String exitDukeInputFormat = "  To exit duke.Duke: bye";
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String DIVIDER =
@@ -311,7 +328,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|" + System.lineSeparator();
         System.out.println("Hello from" + System.lineSeparator() + logo);
         System.out.println(DIVIDER);
-        System.out.println("Hello! I'm Duke" + System.lineSeparator() + "What can I do for you?");
+        System.out.println("Hello! I'm duke.Duke" + System.lineSeparator() + "What can I do for you?");
         System.out.println(DIVIDER);
     }
 }

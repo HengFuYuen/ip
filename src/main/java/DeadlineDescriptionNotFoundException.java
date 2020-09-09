@@ -1,0 +1,2 @@
+public class DeadlineDescriptionNotFoundException extends TaskDescriptionNotFoundException {
+}

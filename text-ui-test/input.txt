@@ -1,3 +1,6 @@
+done 1
+done
+read book
 todo read book
 deadline return book /by June 6th
 event project meeting /at Aug 6th 2-4pm
@@ -12,4 +15,26 @@ buy bread
 list
 done 8
 list
+done
+todo
+deadline
+deadline return card
+event
+event class
+done -1
+done 5      6
+todobuybread
+todo     clean     room
+deadlinecs2113homework/byWednesday2359
+deadline     lab report     /by     Tuesday 12pm
+eventcareertalk/atMonday2pm-3pm
+event     interview     /at     Sunday     3-4pm
+done nothing
+list
+done 11
+done12
+list
+deadline report 02/11/2020
+event class Friday 4-6pm
+bye bye
 bye

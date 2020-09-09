@@ -1,0 +1,2 @@
+public class EventDescriptionNotFoundException extends TaskDescriptionNotFoundException {
+}

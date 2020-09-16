@@ -7,8 +7,8 @@ import duke.exception.DeadlineTimeNotFoundException;
 import duke.exception.EventDescriptionNotFoundException;
 import duke.exception.EventTimeNotFoundException;
 import duke.exception.NoTaskInTaskListException;
-import duke.exception.TaskToMarkAsDoneInvalidException;
-import duke.exception.TaskToMarkAsDoneNotFoundException;
+import duke.exception.TaskIndexIsInvalidException;
+import duke.exception.TaskIndexNotFoundException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -100,23 +100,44 @@ public class TaskList {
         return new Todo(todoDescription);
     }
 
-    protected Task markTaskAsDone(String command) throws TaskToMarkAsDoneNotFoundException,
-            TaskToMarkAsDoneInvalidException, NoTaskInTaskListException {
-        if (numberOfTasks == 0) {
-            throw new NoTaskInTaskListException();
-        }
-        if (command.length() <= 4) {
-            throw new TaskToMarkAsDoneNotFoundException();
-        }
+    protected Task markTaskAsDone(String command) throws TaskIndexNotFoundException,
+            TaskIndexIsInvalidException, NoTaskInTaskListException {
+        checkIfThereAreTasksInTaskList();
+        checkifTaskIndexIsGiven(command, 4);
         int indexOfTaskToBeMarkAsDone = Integer.parseInt(command.substring(4).trim()) - 1;
-
-        if (indexOfTaskToBeMarkAsDone < 0 || indexOfTaskToBeMarkAsDone >= numberOfTasks) {
-            throw new TaskToMarkAsDoneInvalidException();
-        }
-
+        checkValidityOfTaskIndex(indexOfTaskToBeMarkAsDone);
         Task taskMarkedAsDone = tasks.get(indexOfTaskToBeMarkAsDone);
         taskMarkedAsDone.markAsDone();
         return taskMarkedAsDone;
     }
 
+    protected Task deleteTask(String command) throws TaskIndexNotFoundException,
+            TaskIndexIsInvalidException, NoTaskInTaskListException {
+        checkIfThereAreTasksInTaskList();
+        checkifTaskIndexIsGiven(command, 6);
+        int indexOfTaskToBeDeleted = Integer.parseInt(command.substring(6).trim()) - 1 ;
+        checkValidityOfTaskIndex(indexOfTaskToBeDeleted);
+        Task removedTask = tasks.get(indexOfTaskToBeDeleted);
+        tasks.remove(indexOfTaskToBeDeleted);
+        numberOfTasks--;
+        return removedTask;
+    }
+
+    private void checkValidityOfTaskIndex(int indexOfTaskToBeDeleted) throws TaskIndexIsInvalidException {
+        if (indexOfTaskToBeDeleted < 0 || indexOfTaskToBeDeleted >= numberOfTasks) {
+            throw new TaskIndexIsInvalidException();
+        }
+    }
+
+    private void checkifTaskIndexIsGiven(String command, int lengthOfCommandWord) throws TaskIndexNotFoundException {
+        if (command.length() <= lengthOfCommandWord) {
+            throw new TaskIndexNotFoundException();
+        }
+    }
+
+    private void checkIfThereAreTasksInTaskList() throws NoTaskInTaskListException {
+        if (numberOfTasks == 0) {
+            throw new NoTaskInTaskListException();
+        }
+    }
 }

@@ -12,8 +12,8 @@ import duke.exception.DeadlineTimeNotFoundException;
 import duke.exception.EventDescriptionNotFoundException;
 import duke.exception.EventTimeNotFoundException;
 import duke.exception.NoTaskInTaskListException;
-import duke.exception.TaskToMarkAsDoneInvalidException;
-import duke.exception.TaskToMarkAsDoneNotFoundException;
+import duke.exception.TaskIndexIsInvalidException;
+import duke.exception.TaskIndexNotFoundException;
 import duke.task.Task;
 
 import java.util.Scanner;
@@ -22,10 +22,11 @@ public class Duke {
 
     private static TaskList taskList;
 
-    private static final String inputInstruction = "Please input in the following format:";
+    private static final String inputInstructionMessage = "Please input in the following format:";
+    private static String rangeOfValidTaskNumberMessage = "Range of valid task number: ";
     private static final String printTaskListInputFormat = "  To list all tasks: list";
-    private static String markTaskAsDoneInputFormat = "  To mark a task as done: done <task number>"
-            + System.lineSeparator() + "      Range of valid task number: ";
+    private static String markTaskAsDoneInputFormat = "  To mark a task as done: done <task number>";
+    private static String deleteTaskInputFormat = "  To delete a task: delete <task number>";
     private static final String todoInputFormat = "  To add a todo: todo <description of todo>";
     private static final String deadlineInputFormat = "  To add a deadline: deadline <description of "
             + "deadline> /by <time it is due>";
@@ -60,47 +61,88 @@ public class Duke {
             printTaskList();
         } else if (command.startsWith("done")) {
             processTaskAsDone(command);
+        } else if (command.startsWith("delete")) {
+            processTaskDeletion(command);
         } else {
             processTaskAddition(command);
         }
 
     }
 
-    private static void processTaskAsDone(String command) {
+    private static void processTaskDeletion(String command) {
+        String commandType = "delete";
         try {
-            Task taskMarkedAsDone = taskList.markTaskAsDone(command);
-            printTaskMarkedAsDone(taskMarkedAsDone);
-        } catch (TaskToMarkAsDoneNotFoundException e) {
-            printTaskToMarkAsDoneNotFoundErrorMessage();
-        } catch (TaskToMarkAsDoneInvalidException e) {
-            printTaskToMarkAsDoneInvalidErrorMessage();
+            Task deletedTask = taskList.deleteTask(command);
+            printDeletedTask(deletedTask);
+        } catch (TaskIndexNotFoundException e) {
+            printTaskIndexNotFoundErrorMessage(commandType);
+        } catch (TaskIndexIsInvalidException | NumberFormatException e) {
+            printTaskIndexIsInvalidErrorMessage(commandType);
         } catch (NoTaskInTaskListException e) {
             printNoTaskInTaskListErrorMessage();
-        } catch (NumberFormatException e) {
-            printTaskToMarkAsDoneInvalidErrorMessage();
         }
     }
 
-    private static void printTaskToMarkAsDoneNotFoundErrorMessage() {
+    private static void printDeletedTask(Task deletedTask) {
         System.out.println(DIVIDER);
-        System.out.println("\u2639 OOPS!!! The task to mark as done is not found." + System.lineSeparator());
-        System.out.println(inputInstruction);
-        System.out.println(markTaskAsDoneInputFormat + taskList.getRangeOfValidTaskNumber());
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("  " + deletedTask);
+        System.out.println("Now you have " + taskList.getNumberOfTasks() + " task(s) in the list.");
         System.out.println(DIVIDER);
     }
 
-    private static void printTaskToMarkAsDoneInvalidErrorMessage() {
+    private static void processTaskAsDone(String command) {
+        String commandType = "done";
+        try {
+            Task taskMarkedAsDone = taskList.markTaskAsDone(command);
+            printTaskMarkedAsDone(taskMarkedAsDone);
+        } catch (TaskIndexNotFoundException e) {
+            printTaskIndexNotFoundErrorMessage(commandType);
+        } catch (TaskIndexIsInvalidException | NumberFormatException e) {
+            printTaskIndexIsInvalidErrorMessage(commandType);
+        } catch (NoTaskInTaskListException e) {
+            printNoTaskInTaskListErrorMessage();
+        }
+    }
+
+    private static void printTaskIndexNotFoundErrorMessage(String commandType) {
         System.out.println(DIVIDER);
-        System.out.println("\u2639 OOPS!!! The task to mark as done is invalid." + System.lineSeparator());
-        System.out.println(inputInstruction);
-        System.out.println(markTaskAsDoneInputFormat + taskList.getRangeOfValidTaskNumber());
+        if (commandType.equals("done")) {
+            System.out.println("\u2639 OOPS!!! The task to mark as done is not found.");
+            System.out.println(inputInstructionMessage);
+            System.out.println(rangeOfValidTaskNumberMessage+ taskList.getRangeOfValidTaskNumber());
+            System.out.println(markTaskAsDoneInputFormat);
+        }
+        if (commandType.equals("delete")) {
+            System.out.println("\u2639 OOPS!!! The task to delete is not found.");
+            System.out.println(inputInstructionMessage);
+            System.out.println(rangeOfValidTaskNumberMessage+ taskList.getRangeOfValidTaskNumber());
+            System.out.println(deleteTaskInputFormat);
+        }
+        System.out.println(DIVIDER);
+    }
+
+    private static void printTaskIndexIsInvalidErrorMessage(String commandType) {
+        System.out.println(DIVIDER);
+        if (commandType.equals("done")) {
+            System.out.println("\u2639 OOPS!!! The task to mark as done is invalid.");
+            System.out.println(inputInstructionMessage);
+            System.out.println(rangeOfValidTaskNumberMessage+ taskList.getRangeOfValidTaskNumber());
+            System.out.println(markTaskAsDoneInputFormat);
+        }
+        if (commandType.equals("delete")) {
+            System.out.println("\u2639 OOPS!!! The task to delete is invalid." );
+            System.out.println(inputInstructionMessage);
+            System.out.println(rangeOfValidTaskNumberMessage+ taskList.getRangeOfValidTaskNumber());
+            System.out.println(deleteTaskInputFormat);
+        }
         System.out.println(DIVIDER);
     }
 
     private static void printNoTaskInTaskListErrorMessage() {
         System.out.println(DIVIDER);
-        System.out.println("\u2639 OOPS!!! The task list is empty." + System.lineSeparator()
-                + "Please add a task before marking it as done.");
+        System.out.println("\u2639 OOPS!!! The task list is empty.");
+        System.out.println("Please add a task to the task list.");
         System.out.println(todoInputFormat);
         System.out.println(deadlineInputFormat);
         System.out.println(eventInputFormat);
@@ -130,12 +172,14 @@ public class Duke {
         System.out.println(DIVIDER);
         System.out.println("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-("
                 + System.lineSeparator());
-        System.out.println(inputInstruction);
+        System.out.println(inputInstructionMessage);
+        System.out.println(rangeOfValidTaskNumberMessage+ taskList.getRangeOfValidTaskNumber());
         System.out.println(todoInputFormat);
         System.out.println(deadlineInputFormat);
         System.out.println(eventInputFormat);
         System.out.println(printTaskListInputFormat);
-        System.out.println(markTaskAsDoneInputFormat + taskList.getRangeOfValidTaskNumber());
+        System.out.println(markTaskAsDoneInputFormat);
+        System.out.println(deleteTaskInputFormat);
         System.out.println(exitDukeInputFormat);
         System.out.println(DIVIDER);
     }
@@ -144,7 +188,7 @@ public class Duke {
         System.out.println(DIVIDER);
         System.out.println("\u2639 OOPS!!! The description of a todo cannot be empty."
                 + System.lineSeparator());
-        System.out.println(inputInstruction);
+        System.out.println(inputInstructionMessage);
         System.out.println(todoInputFormat);
         System.out.println(DIVIDER);
     }
@@ -153,7 +197,7 @@ public class Duke {
         System.out.println(DIVIDER);
         System.out.println("\u2639 OOPS!!! The description of a deadline cannot be empty."
                 + System.lineSeparator());
-        System.out.println(inputInstruction);
+        System.out.println(inputInstructionMessage);
         System.out.println(deadlineInputFormat);
         System.out.println(DIVIDER);
     }
@@ -162,7 +206,7 @@ public class Duke {
         System.out.println(DIVIDER);
         System.out.println("\u2639 OOPS!!! The time the deadline is due is not found."
                 + System.lineSeparator());
-        System.out.println(inputInstruction);
+        System.out.println(inputInstructionMessage);
         System.out.println(deadlineInputFormat);
         System.out.println(DIVIDER);
     }
@@ -171,7 +215,7 @@ public class Duke {
         System.out.println(DIVIDER);
         System.out.println("\u2639 OOPS!!! The description of an event cannot be empty."
                 + System.lineSeparator());
-        System.out.println(inputInstruction);
+        System.out.println(inputInstructionMessage);
         System.out.println(eventInputFormat);
         System.out.println(DIVIDER);
     }
@@ -179,7 +223,7 @@ public class Duke {
     private static void printEventTimeNotFoundErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println("\u2639 OOPS!!! The timing of the event is not found." + System.lineSeparator());
-        System.out.println(inputInstruction);
+        System.out.println(inputInstructionMessage);
         System.out.println(eventInputFormat);
         System.out.println(DIVIDER);
     }
@@ -233,14 +277,14 @@ public class Duke {
     }
 
     private static void printWelcomeMessage() {
-        String logo = " ____        _        " + System.lineSeparator()
-                + "|  _ \\ _   _| | _____ " + System.lineSeparator()
+        String logo = " ____        _" + System.lineSeparator()
+                + "|  _ \\ _   _| | _____" + System.lineSeparator()
                 + "| | | | | | | |/ / _ \\" + System.lineSeparator()
                 + "| |_| | |_| |   <  __/" + System.lineSeparator()
                 + "|____/ \\__,_|_|\\_\\___|" + System.lineSeparator();
         System.out.println("Hello from" + System.lineSeparator() + logo);
         System.out.println(DIVIDER);
-        System.out.println("Hello! I'm duke.Duke" + System.lineSeparator() + "What can I do for you?");
+        System.out.println("Hello! I'm Duke" + System.lineSeparator() + "What can I do for you?");
         System.out.println(DIVIDER);
     }
 }

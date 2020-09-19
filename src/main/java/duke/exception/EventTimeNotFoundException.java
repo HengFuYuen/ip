@@ -1,4 +1,4 @@
 package duke.exception;
 
-public class EventTimeNotFoundException extends TaskDescriptionNotFoundException {
+public class EventTimeNotFoundException extends InvalidCommandException {
 }

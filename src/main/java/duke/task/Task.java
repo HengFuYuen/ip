@@ -10,12 +10,25 @@ public abstract class Task {
         isDone = false;
     }
 
+    public Task(String command, boolean isDone) {
+        description = command;
+        this.isDone = isDone;
+    }
+
     public void markAsDone() {
         isDone = true;
     }
 
     public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718");
+        return (isDone ? "Y" : "N");
+    }
+
+    public String getDoneStatusForDukeFile() {
+        return (isDone ? "1 : " : "0 : ");
+    }
+
+    public String messageToStoreInDukeFile() {
+        return getDoneStatusForDukeFile() + description;
     }
 
     @Override

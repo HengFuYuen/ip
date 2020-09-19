@@ -10,21 +10,21 @@ Hello! I'm Duke
 What can I do for you?
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The task list is empty.
+:( OOPS!!! The task list is empty.
 Please add a task before marking it as done.
   To add a todo: todo <description of todo>
   To add a deadline: deadline <description of deadline> /by <time it is due>
   To add an event: event <description of event> /at <the event time>
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The task list is empty.
+:( OOPS!!! The task list is empty.
 Please add a task before marking it as done.
   To add a todo: todo <description of todo>
   To add a deadline: deadline <description of deadline> /by <time it is due>
   To add an event: event <description of event> /at <the event time>
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+:( OOPS!!! I'm sorry, but I don't know what that means :-(
 
 Please input in the following format:
   To add a todo: todo <description of todo>
@@ -37,57 +37,57 @@ Please input in the following format:
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [T][✘] read book
+  [T][N] read book
 Now you have 1 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [D][✘] return book (by: June 6th)
+  [D][N] return book (by: June 6th)
 Now you have 2 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [E][✘] project meeting (at: Aug 6th 2-4pm)
+  [E][N] project meeting (at: Aug 6th 2-4pm)
 Now you have 3 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [T][✘] join sports club
+  [T][N] join sports club
 Now you have 4 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
 Nice! I've marked this task as done:
-  [T][✓] read book
+  [T][Y] read book
 _______________________________________________________________________________
 _______________________________________________________________________________
 Nice! I've marked this task as done:
-  [T][✓] join sports club
+  [T][Y] join sports club
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [T][✘] borrow book
+  [T][N] borrow book
 Now you have 5 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
 Here are the tasks in your list:
-  1.[T][✓] read book
-  2.[D][✘] return book (by: June 6th)
-  3.[E][✘] project meeting (at: Aug 6th 2-4pm)
-  4.[T][✓] join sports club
-  5.[T][✘] borrow book
+  1.[T][Y] read book
+  2.[D][N] return book (by: June 6th)
+  3.[E][N] project meeting (at: Aug 6th 2-4pm)
+  4.[T][Y] join sports club
+  5.[T][N] borrow book
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [D][✘] return book (by: Sunday)
+  [D][N] return book (by: Sunday)
 Now you have 6 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [E][✘] project meeting (at: Mon 2-4pm)
+  [E][N] project meeting (at: Mon 2-4pm)
 Now you have 7 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+:( OOPS!!! I'm sorry, but I don't know what that means :-(
 
 Please input in the following format:
   To add a todo: todo <description of todo>
@@ -100,16 +100,16 @@ Please input in the following format:
 _______________________________________________________________________________
 _______________________________________________________________________________
 Here are the tasks in your list:
-  1.[T][✓] read book
-  2.[D][✘] return book (by: June 6th)
-  3.[E][✘] project meeting (at: Aug 6th 2-4pm)
-  4.[T][✓] join sports club
-  5.[T][✘] borrow book
-  6.[D][✘] return book (by: Sunday)
-  7.[E][✘] project meeting (at: Mon 2-4pm)
+  1.[T][Y] read book
+  2.[D][N] return book (by: June 6th)
+  3.[E][N] project meeting (at: Aug 6th 2-4pm)
+  4.[T][Y] join sports club
+  5.[T][N] borrow book
+  6.[D][N] return book (by: Sunday)
+  7.[E][N] project meeting (at: Mon 2-4pm)
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The task to mark as done is invalid.
+:( OOPS!!! The task to mark as done is invalid.
 
 Please input in the following format:
   To mark a task as done: done <task number>
@@ -117,60 +117,60 @@ Please input in the following format:
 _______________________________________________________________________________
 _______________________________________________________________________________
 Here are the tasks in your list:
-  1.[T][✓] read book
-  2.[D][✘] return book (by: June 6th)
-  3.[E][✘] project meeting (at: Aug 6th 2-4pm)
-  4.[T][✓] join sports club
-  5.[T][✘] borrow book
-  6.[D][✘] return book (by: Sunday)
-  7.[E][✘] project meeting (at: Mon 2-4pm)
+  1.[T][Y] read book
+  2.[D][N] return book (by: June 6th)
+  3.[E][N] project meeting (at: Aug 6th 2-4pm)
+  4.[T][Y] join sports club
+  5.[T][N] borrow book
+  6.[D][N] return book (by: Sunday)
+  7.[E][N] project meeting (at: Mon 2-4pm)
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The task to mark as done is not found.
+:( OOPS!!! The task to mark as done is not found.
 
 Please input in the following format:
   To mark a task as done: done <task number>
       Range of valid task number: 1 to 7
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The description of a todo cannot be empty.
+:( OOPS!!! The description of a todo cannot be empty.
 
 Please input in the following format:
   To add a todo: todo <description of todo>
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The description of a deadline cannot be empty.
+:( OOPS!!! The description of a deadline cannot be empty.
 
 Please input in the following format:
   To add a deadline: deadline <description of deadline> /by <time it is due>
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The time the deadline is due is not found.
+:( OOPS!!! The time the deadline is due is not found.
 
 Please input in the following format:
   To add a deadline: deadline <description of deadline> /by <time it is due>
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The description of an event cannot be empty.
+:( OOPS!!! The description of an event cannot be empty.
 
 Please input in the following format:
   To add an event: event <description of event> /at <the event time>
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The timing of the event is not found.
+:( OOPS!!! The timing of the event is not found.
 
 Please input in the following format:
   To add an event: event <description of event> /at <the event time>
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The task to mark as done is invalid.
+:( OOPS!!! The task to mark as done is invalid.
 
 Please input in the following format:
   To mark a task as done: done <task number>
       Range of valid task number: 1 to 7
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The task to mark as done is invalid.
+:( OOPS!!! The task to mark as done is invalid.
 
 Please input in the following format:
   To mark a task as done: done <task number>
@@ -178,36 +178,36 @@ Please input in the following format:
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [T][✘] buybread
+  [T][N] buybread
 Now you have 8 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [T][✘] clean     room
+  [T][N] clean     room
 Now you have 9 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [D][✘] cs2113homework (by: Wednesday2359)
+  [D][N] cs2113homework (by: Wednesday2359)
 Now you have 10 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [D][✘] lab report (by: Tuesday 12pm)
+  [D][N] lab report (by: Tuesday 12pm)
 Now you have 11 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [E][✘] careertalk (at: Monday2pm-3pm)
+  [E][N] careertalk (at: Monday2pm-3pm)
 Now you have 12 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
 Got it. I've added this task:
-  [E][✘] interview (at: Sunday     3-4pm)
+  [E][N] interview (at: Sunday     3-4pm)
 Now you have 13 task(s) in the list.
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The task to mark as done is invalid.
+:( OOPS!!! The task to mark as done is invalid.
 
 Please input in the following format:
   To mark a task as done: done <task number>
@@ -215,58 +215,58 @@ Please input in the following format:
 _______________________________________________________________________________
 _______________________________________________________________________________
 Here are the tasks in your list:
-  1.[T][✓] read book
-  2.[D][✘] return book (by: June 6th)
-  3.[E][✘] project meeting (at: Aug 6th 2-4pm)
-  4.[T][✓] join sports club
-  5.[T][✘] borrow book
-  6.[D][✘] return book (by: Sunday)
-  7.[E][✘] project meeting (at: Mon 2-4pm)
-  8.[T][✘] buybread
-  9.[T][✘] clean     room
-  10.[D][✘] cs2113homework (by: Wednesday2359)
-  11.[D][✘] lab report (by: Tuesday 12pm)
-  12.[E][✘] careertalk (at: Monday2pm-3pm)
-  13.[E][✘] interview (at: Sunday     3-4pm)
+  1.[T][Y] read book
+  2.[D][N] return book (by: June 6th)
+  3.[E][N] project meeting (at: Aug 6th 2-4pm)
+  4.[T][Y] join sports club
+  5.[T][N] borrow book
+  6.[D][N] return book (by: Sunday)
+  7.[E][N] project meeting (at: Mon 2-4pm)
+  8.[T][N] buybread
+  9.[T][N] clean     room
+  10.[D][N] cs2113homework (by: Wednesday2359)
+  11.[D][N] lab report (by: Tuesday 12pm)
+  12.[E][N] careertalk (at: Monday2pm-3pm)
+  13.[E][N] interview (at: Sunday     3-4pm)
 _______________________________________________________________________________
 _______________________________________________________________________________
 Nice! I've marked this task as done:
-  [D][✓] lab report (by: Tuesday 12pm)
+  [D][Y] lab report (by: Tuesday 12pm)
 _______________________________________________________________________________
 _______________________________________________________________________________
 Nice! I've marked this task as done:
-  [E][✓] careertalk (at: Monday2pm-3pm)
+  [E][Y] careertalk (at: Monday2pm-3pm)
 _______________________________________________________________________________
 _______________________________________________________________________________
 Here are the tasks in your list:
-  1.[T][✓] read book
-  2.[D][✘] return book (by: June 6th)
-  3.[E][✘] project meeting (at: Aug 6th 2-4pm)
-  4.[T][✓] join sports club
-  5.[T][✘] borrow book
-  6.[D][✘] return book (by: Sunday)
-  7.[E][✘] project meeting (at: Mon 2-4pm)
-  8.[T][✘] buybread
-  9.[T][✘] clean     room
-  10.[D][✘] cs2113homework (by: Wednesday2359)
-  11.[D][✓] lab report (by: Tuesday 12pm)
-  12.[E][✓] careertalk (at: Monday2pm-3pm)
-  13.[E][✘] interview (at: Sunday     3-4pm)
+  1.[T][Y] read book
+  2.[D][N] return book (by: June 6th)
+  3.[E][N] project meeting (at: Aug 6th 2-4pm)
+  4.[T][Y] join sports club
+  5.[T][N] borrow book
+  6.[D][N] return book (by: Sunday)
+  7.[E][N] project meeting (at: Mon 2-4pm)
+  8.[T][N] buybread
+  9.[T][N] clean     room
+  10.[D][N] cs2113homework (by: Wednesday2359)
+  11.[D][Y] lab report (by: Tuesday 12pm)
+  12.[E][Y] careertalk (at: Monday2pm-3pm)
+  13.[E][N] interview (at: Sunday     3-4pm)
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The time the deadline is due is not found.
+:( OOPS!!! The time the deadline is due is not found.
 
 Please input in the following format:
   To add a deadline: deadline <description of deadline> /by <time it is due>
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! The timing of the event is not found.
+:( OOPS!!! The timing of the event is not found.
 
 Please input in the following format:
   To add an event: event <description of event> /at <the event time>
 _______________________________________________________________________________
 _______________________________________________________________________________
-☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+:( OOPS!!! I'm sorry, but I don't know what that means :-(
 
 Please input in the following format:
   To add a todo: todo <description of todo>

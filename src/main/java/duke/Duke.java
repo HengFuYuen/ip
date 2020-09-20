@@ -31,7 +31,6 @@ import java.io.File;
 public class Duke {
 
     private static final int MAX_NUMBER_OF_TASKS = 100;
-    private static final String TASK_DONE = "1";
     private static Task[] tasks = new Task[MAX_NUMBER_OF_TASKS];
     private static int taskNumber = 0;
     private static int numberOfPreviouslySavedTasks = 0;
@@ -474,7 +473,7 @@ public class Duke {
 
     private static Task createSavedEvent(String savedTask) {
         String[] savedEventInformation = splitTaskInformation(savedTask);
-        boolean isSavedEventDone = savedEventInformation[1].trim().equals(TASK_DONE);
+        boolean isSavedEventDone = savedEventInformation[1].trim().equals(Task.TASK_DONE_ICON);
         String savedEventDescription = savedEventInformation[2].trim();
         String savedEventTime = savedEventInformation[3].trim();
         return new Deadline(savedEventDescription, savedEventTime, isSavedEventDone);
@@ -482,7 +481,7 @@ public class Duke {
 
     private static Task createSavedDeadline(String savedTask) {
         String[] savedDeadlineInformation = splitTaskInformation(savedTask);
-        boolean isSavedDeadlineDone = savedDeadlineInformation[1].trim().equals(TASK_DONE);
+        boolean isSavedDeadlineDone = savedDeadlineInformation[1].trim().equals(Task.TASK_DONE_ICON);
         String savedDeadlineDescription = savedDeadlineInformation[2].trim();
         String savedDeadlineTime = savedDeadlineInformation[3].trim();
         return new Deadline(savedDeadlineDescription, savedDeadlineTime, isSavedDeadlineDone);
@@ -490,7 +489,7 @@ public class Duke {
 
     private static Task createSavedTodo(String savedTask) {
         String[] savedTodoInformation = splitTaskInformation(savedTask);
-        boolean isSavedTodoDone = savedTodoInformation[1].trim().equals(TASK_DONE);
+        boolean isSavedTodoDone = savedTodoInformation[1].trim().equals(Task.TASK_DONE_ICON);
         String savedTodoDescription = savedTodoInformation[2].trim();
         return new Todo(savedTodoDescription,isSavedTodoDone);
     }

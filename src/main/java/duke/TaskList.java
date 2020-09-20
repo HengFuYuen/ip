@@ -32,10 +32,6 @@ public class TaskList {
         return numberOfTasks;
     }
 
-    protected void setNumberOfTasks(int numberOfTasks) {
-        this.numberOfTasks = numberOfTasks;
-    }
-
     protected String getRangeOfValidTaskNumber() {
         return numberOfTasks == 0 ? "none" : "1 to " + numberOfTasks;
     }
@@ -142,7 +138,7 @@ public class TaskList {
             throw new TaskIndexNotFoundException();
         }
         int indexOfTaskToBeDeleted =
-                Integer.parseInt(command.substring(CommandType.DELETE.getCommandWord().length()).trim()) - 1 ;
+                Integer.parseInt(command.substring(CommandType.DELETE.getCommandWordLength()).trim()) - 1 ;
         if (!isTaskIndexValid(indexOfTaskToBeDeleted)) {
             throw new InvalidTaskIndexException();
         }
@@ -169,5 +165,6 @@ public class TaskList {
 
     public void clear() {
         tasks.clear();
+        numberOfTasks = 0;
     }
 }

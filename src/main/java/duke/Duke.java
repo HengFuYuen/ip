@@ -85,7 +85,6 @@ public class Duke {
 
     private static void clearTaskList() {
         taskList.clear();
-        taskList.setNumberOfTasks(0);
     }
 
     private static void processTaskDeletion(String command) {
@@ -183,11 +182,11 @@ public class Duke {
         } catch (EventTimeNotFoundException e) {
             printEventTimeNotFoundErrorMessage();
         } catch (InvalidCommandException e) {
-            printTaskDescriptionNotFoundErrorMessage();
+            printInvalidCommandExceptionErrorMessage();
         }
     }
 
-    private static void printTaskDescriptionNotFoundErrorMessage() {
+    private static void printInvalidCommandExceptionErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-("
                 + System.lineSeparator());

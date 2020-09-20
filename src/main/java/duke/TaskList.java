@@ -9,6 +9,7 @@ import duke.exception.EventTimeNotFoundException;
 import duke.exception.EmptyTaskListException;
 import duke.exception.InvalidTaskIndexException;
 import duke.exception.TaskIndexNotFoundException;
+import duke.exception.InvalidTaskTypeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -19,7 +20,8 @@ import java.util.ArrayList;
 public class TaskList {
 
     private static final ArrayList<Task> tasks = new ArrayList<>();
-    protected static int numberOfTasks = 0;
+    private static int numberOfTasks = 0;
+    private static int numberOfSavedTasks = 0;
 
     public TaskList() {
     }
@@ -30,6 +32,10 @@ public class TaskList {
 
     protected int getNumberOfTasks() {
         return numberOfTasks;
+    }
+
+    protected int getNumberOfSavedTasks() {
+        return numberOfSavedTasks;
     }
 
     protected String getRangeOfValidTaskNumber() {
@@ -149,10 +155,7 @@ public class TaskList {
     }
 
     private boolean isTaskIndexValid(int indexOfTaskToBeDeleted) {
-        if (indexOfTaskToBeDeleted < 0 || indexOfTaskToBeDeleted >= numberOfTasks) {
-            return false;
-        }
-        return true;
+        return indexOfTaskToBeDeleted >= 0 && indexOfTaskToBeDeleted < numberOfTasks;
     }
 
     private boolean isTaskIndexGiven(String command, CommandType commandType) {
@@ -166,5 +169,48 @@ public class TaskList {
     public void clear() {
         tasks.clear();
         numberOfTasks = 0;
+    }
+
+    public void addSavedTask(String savedTask) throws InvalidTaskTypeException {
+        Task savedTaskToBeAdded;
+        if (savedTask.startsWith("T")) {
+            savedTaskToBeAdded = createSavedTodo(savedTask);
+        } else if (savedTask.startsWith("D")) {
+            savedTaskToBeAdded = createSavedDeadline(savedTask);
+        } else if (savedTask.startsWith("E")) {
+            savedTaskToBeAdded = createSavedEvent(savedTask);
+        } else {
+            throw new InvalidTaskTypeException();
+        }
+        tasks.add(savedTaskToBeAdded);
+        numberOfSavedTasks++;
+        numberOfTasks++;
+    }
+
+    private String[] splitTaskInformation(String taskInformation) {
+        return taskInformation.split(":");
+    }
+
+    private Event createSavedEvent(String savedTask) {
+        String[] savedEventInformation = splitTaskInformation(savedTask);
+        boolean isSavedEventDone = savedEventInformation[1].trim().equals(Task.TASK_DONE_ICON);
+        String savedEventDescription = savedEventInformation[2].trim();
+        String savedEventTime = savedEventInformation[3].trim();
+        return new Event(savedEventDescription, savedEventTime, isSavedEventDone);
+    }
+
+    private Deadline createSavedDeadline(String savedTask) {
+        String[] savedDeadlineInformation = splitTaskInformation(savedTask);
+        boolean isSavedDeadlineDone = savedDeadlineInformation[1].trim().equals(Task.TASK_DONE_ICON);
+        String savedDeadlineDescription = savedDeadlineInformation[2].trim();
+        String savedDeadlineTime = savedDeadlineInformation[3].trim();
+        return new Deadline(savedDeadlineDescription, savedDeadlineTime, isSavedDeadlineDone);
+    }
+
+    private Todo createSavedTodo(String savedTask) {
+        String[] savedTodoInformation = splitTaskInformation(savedTask);
+        boolean isSavedTodoDone = savedTodoInformation[1].trim().equals(Task.TASK_DONE_ICON);
+        String savedTodoDescription = savedTodoInformation[2].trim();
+        return new Todo(savedTodoDescription,isSavedTodoDone);
     }
 }

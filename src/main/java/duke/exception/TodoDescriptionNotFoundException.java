@@ -1,4 +1,4 @@
 package duke.exception;
 
-public class TodoDescriptionNotFoundException extends TaskDescriptionNotFoundException {
+public class TodoDescriptionNotFoundException extends InvalidCommandException {
 }

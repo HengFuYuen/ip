@@ -5,14 +5,14 @@ package duke;
  * https://github.com/nus-cs2113-AY2021S1/contacts/blob/master/src/main/java/Contacts1.java
  */
 
-import duke.exception.TaskDescriptionNotFoundException;
+import duke.exception.InvalidCommandException;
 import duke.exception.TodoDescriptionNotFoundException;
 import duke.exception.DeadlineDescriptionNotFoundException;
 import duke.exception.DeadlineTimeNotFoundException;
 import duke.exception.EventDescriptionNotFoundException;
 import duke.exception.EventTimeNotFoundException;
-import duke.exception.NoTaskInTaskListException;
-import duke.exception.TaskIndexIsInvalidException;
+import duke.exception.EmptyTaskListException;
+import duke.exception.InvalidTaskIndexException;
 import duke.exception.TaskIndexNotFoundException;
 import duke.task.Task;
 
@@ -33,6 +33,7 @@ public class Duke {
     private static final String eventInputFormat = "  To add an event: event <description of event> /at "
             + "<the event time>";
     private static final String exitDukeInputFormat = "  To exit Duke: bye";
+    private static final String clearTaskListInputFormat = "  To clear task list: clear";
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String DIVIDER =
@@ -55,32 +56,67 @@ public class Duke {
 
     private static void processUserCommand(String command) {
         command = command.trim();
-        if (command.equals("bye")) {
+        if (command.equals(CommandType.BYE.getCommandWord())) {
             processExit();
-        } else if (command.equals("list")) {
+        } else if (command.equals(CommandType.LIST.getCommandWord())) {
             printTaskList();
-        } else if (command.startsWith("done")) {
+        } else if (command.startsWith(CommandType.DONE.getCommandWord())) {
             processTaskAsDone(command);
-        } else if (command.startsWith("delete")) {
+        } else if (command.startsWith(CommandType.DELETE.getCommandWord())) {
             processTaskDeletion(command);
+        } else if (command.equals(CommandType.CLEAR.getCommandWord())) {
+            processTaskListClearance();
         } else {
             processTaskAddition(command);
         }
+    }
 
+    private static void processTaskListClearance() {
+        clearTaskList();
+        printClearTaskListMessage();
+    }
+
+    private static void printClearTaskListMessage() {
+        System.out.println(DIVIDER);
+        System.out.println("All previous data has been deleted...");
+        System.out.println("The task list is now empty.");
+        System.out.println(DIVIDER);
+    }
+
+    private static void clearTaskList() {
+        taskList.clear();
+        taskList.setNumberOfTasks(0);
     }
 
     private static void processTaskDeletion(String command) {
-        String commandType = "delete";
         try {
             Task deletedTask = taskList.deleteTask(command);
             printDeletedTask(deletedTask);
         } catch (TaskIndexNotFoundException e) {
-            printTaskIndexNotFoundErrorMessage(commandType);
-        } catch (TaskIndexIsInvalidException | NumberFormatException e) {
-            printTaskIndexIsInvalidErrorMessage(commandType);
-        } catch (NoTaskInTaskListException e) {
-            printNoTaskInTaskListErrorMessage();
+            printTaskToDeleteIndexNotFoundErrorMessage();
+        } catch (InvalidTaskIndexException | NumberFormatException e) {
+            printInvalidTaskToDeleteIndexErrorMessage();
+        } catch (EmptyTaskListException e) {
+            printEmptyTaskListErrorMessage();
         }
+    }
+
+    private static void printInvalidTaskToDeleteIndexErrorMessage() {
+        System.out.println(DIVIDER);
+        System.out.println("\u2639 OOPS!!! The task to delete is invalid.");
+        System.out.println(inputInstructionMessage);
+        System.out.println(rangeOfValidTaskNumberMessage + taskList.getRangeOfValidTaskNumber());
+        System.out.println(deleteTaskInputFormat);
+        System.out.println(DIVIDER);
+    }
+
+    private static void printTaskToDeleteIndexNotFoundErrorMessage() {
+        System.out.println(DIVIDER);
+        System.out.println("\u2639 OOPS!!! The task to delete is not found.");
+        System.out.println(inputInstructionMessage);
+        System.out.println(rangeOfValidTaskNumberMessage + taskList.getRangeOfValidTaskNumber());
+        System.out.println(deleteTaskInputFormat);
+        System.out.println(DIVIDER);
     }
 
     private static void printDeletedTask(Task deletedTask) {
@@ -92,54 +128,37 @@ public class Duke {
     }
 
     private static void processTaskAsDone(String command) {
-        String commandType = "done";
         try {
             Task taskMarkedAsDone = taskList.markTaskAsDone(command);
             printTaskMarkedAsDone(taskMarkedAsDone);
         } catch (TaskIndexNotFoundException e) {
-            printTaskIndexNotFoundErrorMessage(commandType);
-        } catch (TaskIndexIsInvalidException | NumberFormatException e) {
-            printTaskIndexIsInvalidErrorMessage(commandType);
-        } catch (NoTaskInTaskListException e) {
-            printNoTaskInTaskListErrorMessage();
+            printTaskToMarkAsDoneIndexNotFoundErrorMessage();
+        } catch (InvalidTaskIndexException | NumberFormatException e) {
+            printInvalidTaskToMarkAsDoneIndexErrorMessage();
+        } catch (EmptyTaskListException e) {
+            printEmptyTaskListErrorMessage();
         }
     }
 
-    private static void printTaskIndexNotFoundErrorMessage(String commandType) {
+    private static void printTaskToMarkAsDoneIndexNotFoundErrorMessage() {
         System.out.println(DIVIDER);
-        if (commandType.equals("done")) {
-            System.out.println("\u2639 OOPS!!! The task to mark as done is not found.");
-            System.out.println(inputInstructionMessage);
-            System.out.println(rangeOfValidTaskNumberMessage+ taskList.getRangeOfValidTaskNumber());
-            System.out.println(markTaskAsDoneInputFormat);
-        }
-        if (commandType.equals("delete")) {
-            System.out.println("\u2639 OOPS!!! The task to delete is not found.");
-            System.out.println(inputInstructionMessage);
-            System.out.println(rangeOfValidTaskNumberMessage+ taskList.getRangeOfValidTaskNumber());
-            System.out.println(deleteTaskInputFormat);
-        }
+        System.out.println("\u2639 OOPS!!! The task to mark as done is not found.");
+        System.out.println(inputInstructionMessage);
+        System.out.println(rangeOfValidTaskNumberMessage + taskList.getRangeOfValidTaskNumber());
+        System.out.println(markTaskAsDoneInputFormat);
         System.out.println(DIVIDER);
     }
 
-    private static void printTaskIndexIsInvalidErrorMessage(String commandType) {
+    private static void printInvalidTaskToMarkAsDoneIndexErrorMessage() {
         System.out.println(DIVIDER);
-        if (commandType.equals("done")) {
-            System.out.println("\u2639 OOPS!!! The task to mark as done is invalid.");
-            System.out.println(inputInstructionMessage);
-            System.out.println(rangeOfValidTaskNumberMessage+ taskList.getRangeOfValidTaskNumber());
-            System.out.println(markTaskAsDoneInputFormat);
-        }
-        if (commandType.equals("delete")) {
-            System.out.println("\u2639 OOPS!!! The task to delete is invalid." );
-            System.out.println(inputInstructionMessage);
-            System.out.println(rangeOfValidTaskNumberMessage+ taskList.getRangeOfValidTaskNumber());
-            System.out.println(deleteTaskInputFormat);
-        }
+        System.out.println("\u2639 OOPS!!! The task to mark as done is invalid.");
+        System.out.println(inputInstructionMessage);
+        System.out.println(rangeOfValidTaskNumberMessage + taskList.getRangeOfValidTaskNumber());
+        System.out.println(markTaskAsDoneInputFormat);
         System.out.println(DIVIDER);
     }
 
-    private static void printNoTaskInTaskListErrorMessage() {
+    private static void printEmptyTaskListErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println("\u2639 OOPS!!! The task list is empty.");
         System.out.println("Please add a task to the task list.");
@@ -163,7 +182,7 @@ public class Duke {
             printEventDescriptionNotFoundErrorMessage();
         } catch (EventTimeNotFoundException e) {
             printEventTimeNotFoundErrorMessage();
-        } catch (TaskDescriptionNotFoundException e) {
+        } catch (InvalidCommandException e) {
             printTaskDescriptionNotFoundErrorMessage();
         }
     }
@@ -173,13 +192,14 @@ public class Duke {
         System.out.println("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-("
                 + System.lineSeparator());
         System.out.println(inputInstructionMessage);
-        System.out.println(rangeOfValidTaskNumberMessage+ taskList.getRangeOfValidTaskNumber());
+        System.out.println(rangeOfValidTaskNumberMessage + taskList.getRangeOfValidTaskNumber());
         System.out.println(todoInputFormat);
         System.out.println(deadlineInputFormat);
         System.out.println(eventInputFormat);
         System.out.println(printTaskListInputFormat);
         System.out.println(markTaskAsDoneInputFormat);
         System.out.println(deleteTaskInputFormat);
+        System.out.println(clearTaskListInputFormat);
         System.out.println(exitDukeInputFormat);
         System.out.println(DIVIDER);
     }

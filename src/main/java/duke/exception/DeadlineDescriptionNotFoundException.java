@@ -1,4 +1,4 @@
 package duke.exception;
 
-public class DeadlineDescriptionNotFoundException extends TaskDescriptionNotFoundException {
+public class DeadlineDescriptionNotFoundException extends InvalidCommandException {
 }

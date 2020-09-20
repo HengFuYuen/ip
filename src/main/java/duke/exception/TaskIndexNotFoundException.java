@@ -1,4 +1,4 @@
 package duke.exception;
 
-public class TaskIndexNotFoundException extends DukeException {
+public class TaskIndexNotFoundException extends InvalidCommandException {
 }

@@ -41,6 +41,7 @@ Range of valid task number: none
   To list all tasks: list
   To mark a task as done: done <task number>
   To delete a task: delete <task number>
+  To clear task list: clear
   To exit Duke: bye
 _______________________________________________________________________________
 _______________________________________________________________________________
@@ -105,6 +106,7 @@ Range of valid task number: 1 to 7
   To list all tasks: list
   To mark a task as done: done <task number>
   To delete a task: delete <task number>
+  To clear task list: clear
   To exit Duke: bye
 _______________________________________________________________________________
 _______________________________________________________________________________
@@ -280,6 +282,7 @@ Range of valid task number: 1 to 13
   To list all tasks: list
   To mark a task as done: done <task number>
   To delete a task: delete <task number>
+  To clear task list: clear
   To exit Duke: bye
 _______________________________________________________________________________
 _______________________________________________________________________________
@@ -329,6 +332,31 @@ Here are the tasks in your list:
   9.[D][✓] lab report (by: Tuesday 12pm)
   10.[E][✓] careertalk (at: Monday2pm-3pm)
   11.[E][✘] interview (at: Sunday     3-4pm)
+_______________________________________________________________________________
+_______________________________________________________________________________
+All previous data has been deleted...
+The task list is now empty.
+_______________________________________________________________________________
+_______________________________________________________________________________
+Got it. I've added this task:
+  [T][✘] read book
+Now you have 1 task(s) in the list.
+_______________________________________________________________________________
+_______________________________________________________________________________
+Got it. I've added this task:
+  [D][✘] return book (by: June 6th)
+Now you have 2 task(s) in the list.
+_______________________________________________________________________________
+_______________________________________________________________________________
+Got it. I've added this task:
+  [E][✘] project meeting (at: Aug 6th 2-4pm)
+Now you have 3 task(s) in the list.
+_______________________________________________________________________________
+_______________________________________________________________________________
+Here are the tasks in your list:
+  1.[T][✘] read book
+  2.[D][✘] return book (by: June 6th)
+  3.[E][✘] project meeting (at: Aug 6th 2-4pm)
 _______________________________________________________________________________
 _______________________________________________________________________________
 Bye. Hope to see you again soon!

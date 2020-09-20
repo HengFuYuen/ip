@@ -1,13 +1,13 @@
 package duke;
 
-import duke.exception.TaskDescriptionNotFoundException;
+import duke.exception.InvalidCommandException;
 import duke.exception.TodoDescriptionNotFoundException;
 import duke.exception.DeadlineDescriptionNotFoundException;
 import duke.exception.DeadlineTimeNotFoundException;
 import duke.exception.EventDescriptionNotFoundException;
 import duke.exception.EventTimeNotFoundException;
-import duke.exception.NoTaskInTaskListException;
-import duke.exception.TaskIndexIsInvalidException;
+import duke.exception.EmptyTaskListException;
+import duke.exception.InvalidTaskIndexException;
 import duke.exception.TaskIndexNotFoundException;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -32,40 +32,49 @@ public class TaskList {
         return numberOfTasks;
     }
 
+    protected void setNumberOfTasks(int numberOfTasks) {
+        this.numberOfTasks = numberOfTasks;
+    }
+
     protected String getRangeOfValidTaskNumber() {
         return numberOfTasks == 0 ? "none" : "1 to " + numberOfTasks;
     }
 
-    protected Task addNewTask(String command) throws TaskDescriptionNotFoundException {
+    protected Task addNewTask(String command) throws InvalidCommandException {
         Task newTask;
-        if (command.startsWith("todo")) {
+        if (command.startsWith(CommandType.TODO.getCommandWord())) {
             newTask = createTodo(command);
-        } else if (command.startsWith("deadline")) {
+        } else if (command.startsWith(CommandType.DEADLINE.getCommandWord())) {
             newTask = createDeadline(command);
-        } else if (command.startsWith("event")) {
+        } else if (command.startsWith(CommandType.EVENT.getCommandWord())) {
             newTask = createEvent(command);
         } else {
-            throw new TaskDescriptionNotFoundException();
+            throw new InvalidCommandException();
         }
         tasks.add(newTask);
         numberOfTasks++;
         return newTask;
     }
 
-    private String[] splitDescriptionAndTime(String taskInformation, String splitLocation) {
-        return taskInformation.split(splitLocation);
+    private String[] splitDescriptionAndTime(String taskInformation, CommandType splitLocation) {
+        return taskInformation.split(splitLocation.getCommandWord());
     }
 
-    private Task createEvent(String command) throws EventDescriptionNotFoundException,
+    private boolean hasTaskDescription(String command, CommandType commandType) {
+        return command.length() > commandType.getCommandWordLength();
+    }
+
+    private Event createEvent(String command) throws EventDescriptionNotFoundException,
             EventTimeNotFoundException {
-        if (command.length() <= 6) {
+        if (!hasTaskDescription(command, CommandType.EVENT)) {
             throw new EventDescriptionNotFoundException();
         }
 
-        String eventInformation = command.substring(5).trim();
-        String[] eventDescriptionAndTime = splitDescriptionAndTime(eventInformation, "/at");
+        String eventInformation = command.substring(CommandType.EVENT.getCommandWordLength()).trim();
+        String[] eventDescriptionAndTime = splitDescriptionAndTime(eventInformation,
+                CommandType.EVENT_TIME_INDICATOR);
 
-        if (eventDescriptionAndTime.length <= 1) {
+        if (!hasTaskTime(eventDescriptionAndTime)) {
             throw new EventTimeNotFoundException();
         }
 
@@ -74,16 +83,17 @@ public class TaskList {
         return new Event(eventDescription, eventTime);
     }
 
-    private Task createDeadline(String command) throws DeadlineDescriptionNotFoundException,
+    private Deadline createDeadline(String command) throws DeadlineDescriptionNotFoundException,
             DeadlineTimeNotFoundException {
-        if (command.length() <= 9) {
+        if (!hasTaskDescription(command, CommandType.DEADLINE)) {
             throw new DeadlineDescriptionNotFoundException();
         }
 
-        String deadlineInformation = command.substring(8).trim();
-        String[] deadlineDescriptionAndTime = splitDescriptionAndTime(deadlineInformation, "/by");
+        String deadlineInformation = command.substring(CommandType.DEADLINE.getCommandWordLength()).trim();
+        String[] deadlineDescriptionAndTime = splitDescriptionAndTime(deadlineInformation
+                , CommandType.DEADLINE_TIME_INDICATOR);
 
-        if (deadlineDescriptionAndTime.length <= 1) {
+        if (!hasTaskTime(deadlineDescriptionAndTime)) {
             throw new DeadlineTimeNotFoundException();
         }
 
@@ -92,52 +102,72 @@ public class TaskList {
         return new Deadline(deadlineDescription, deadlineTime);
     }
 
-    private Task createTodo(String command) throws TodoDescriptionNotFoundException {
-        if (command.length() <= 5) {
+    private boolean hasTaskTime(String[] taskDescriptionAndTime) {
+        int taskTimeIndex = 2;
+        return taskDescriptionAndTime.length == taskTimeIndex;
+    }
+
+    private Todo createTodo(String command) throws TodoDescriptionNotFoundException {
+        if (!hasTaskDescription(command, CommandType.TODO)) {
             throw new TodoDescriptionNotFoundException();
         }
-        String todoDescription = command.substring(4).trim();
+        String todoDescription = command.substring(CommandType.TODO.getCommandWordLength()).trim();
         return new Todo(todoDescription);
     }
 
     protected Task markTaskAsDone(String command) throws TaskIndexNotFoundException,
-            TaskIndexIsInvalidException, NoTaskInTaskListException {
-        checkIfThereAreTasksInTaskList();
-        checkifTaskIndexIsGiven(command, 4);
-        int indexOfTaskToBeMarkAsDone = Integer.parseInt(command.substring(4).trim()) - 1;
-        checkValidityOfTaskIndex(indexOfTaskToBeMarkAsDone);
+            InvalidTaskIndexException, EmptyTaskListException {
+        if (isEmpty()) {
+            throw new EmptyTaskListException();
+        }
+        if (!isTaskIndexGiven(command, CommandType.DONE)) {
+            throw new TaskIndexNotFoundException();
+        }
+        int indexOfTaskToBeMarkAsDone =
+                Integer.parseInt(command.substring(CommandType.DONE.getCommandWordLength()).trim()) - 1;
+        if (!isTaskIndexValid(indexOfTaskToBeMarkAsDone)) {
+            throw new InvalidTaskIndexException();
+        }
         Task taskMarkedAsDone = tasks.get(indexOfTaskToBeMarkAsDone);
         taskMarkedAsDone.markAsDone();
         return taskMarkedAsDone;
     }
 
     protected Task deleteTask(String command) throws TaskIndexNotFoundException,
-            TaskIndexIsInvalidException, NoTaskInTaskListException {
-        checkIfThereAreTasksInTaskList();
-        checkifTaskIndexIsGiven(command, 6);
-        int indexOfTaskToBeDeleted = Integer.parseInt(command.substring(6).trim()) - 1 ;
-        checkValidityOfTaskIndex(indexOfTaskToBeDeleted);
+            InvalidTaskIndexException, EmptyTaskListException {
+        if (isEmpty()) {
+            throw new EmptyTaskListException();
+        }
+        if (!isTaskIndexGiven(command, CommandType.DELETE)) {
+            throw new TaskIndexNotFoundException();
+        }
+        int indexOfTaskToBeDeleted =
+                Integer.parseInt(command.substring(CommandType.DELETE.getCommandWord().length()).trim()) - 1 ;
+        if (!isTaskIndexValid(indexOfTaskToBeDeleted)) {
+            throw new InvalidTaskIndexException();
+        }
         Task removedTask = tasks.get(indexOfTaskToBeDeleted);
         tasks.remove(indexOfTaskToBeDeleted);
         numberOfTasks--;
         return removedTask;
     }
 
-    private void checkValidityOfTaskIndex(int indexOfTaskToBeDeleted) throws TaskIndexIsInvalidException {
+    private boolean isTaskIndexValid(int indexOfTaskToBeDeleted) {
         if (indexOfTaskToBeDeleted < 0 || indexOfTaskToBeDeleted >= numberOfTasks) {
-            throw new TaskIndexIsInvalidException();
+            return false;
         }
+        return true;
     }
 
-    private void checkifTaskIndexIsGiven(String command, int lengthOfCommandWord) throws TaskIndexNotFoundException {
-        if (command.length() <= lengthOfCommandWord) {
-            throw new TaskIndexNotFoundException();
-        }
+    private boolean isTaskIndexGiven(String command, CommandType commandType) {
+        return command.length() > commandType.getCommandWordLength();
     }
 
-    private void checkIfThereAreTasksInTaskList() throws NoTaskInTaskListException {
-        if (numberOfTasks == 0) {
-            throw new NoTaskInTaskListException();
-        }
+    private boolean isEmpty() {
+        return numberOfTasks == 0;
+    }
+
+    public void clear() {
+        tasks.clear();
     }
 }

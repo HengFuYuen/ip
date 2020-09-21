@@ -24,11 +24,6 @@ public class TaskList {
     private static final String DEADLINE_TIME_INDICATOR = "/by";
     private static final String EVENT_TIME_INDICATOR = "/at";
 
-    public TaskList() {
-        this.tasks = new ArrayList<>();
-        this.numberOfTasks = 0;
-    }
-
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
         this.numberOfTasks = tasks.size();

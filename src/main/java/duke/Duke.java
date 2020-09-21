@@ -45,7 +45,7 @@ public class Duke {
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String DIVIDER =
-            "_______________________________________________________________________________";
+            "_____________________________________________________________________________________________";
 
     public static void main(String[] args) {
         printWelcomeMessage();
@@ -298,8 +298,8 @@ public class Duke {
 
     private static void printDeadlineTimeNotFoundErrorMessage() {
         System.out.println(DIVIDER);
-        System.out.println(START_OF_ERROR_MESSAGE + "The time the deadline is due is not found."
-                + System.lineSeparator());
+        System.out.println(START_OF_ERROR_MESSAGE + "The time the deadline is due is not found as none or " +
+                "too many timings were given." + System.lineSeparator());
         System.out.println(INPUT_INSTRUCTION_MESSAGE);
         System.out.println(DEADLINE_INPUT_FORMAT);
         System.out.println(DIVIDER);
@@ -316,8 +316,8 @@ public class Duke {
 
     private static void printEventTimeNotFoundErrorMessage() {
         System.out.println(DIVIDER);
-        System.out.println(START_OF_ERROR_MESSAGE + "The timing of the event is not found."
-                + System.lineSeparator());
+        System.out.println(START_OF_ERROR_MESSAGE + "The event timing is not found as none or too " +
+                "many timings were given." + System.lineSeparator());
         System.out.println(INPUT_INSTRUCTION_MESSAGE);
         System.out.println(EVENT_INPUT_FORMAT);
         System.out.println(DIVIDER);

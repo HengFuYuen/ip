@@ -36,7 +36,9 @@ done 11
 done12
 list
 deadline report 02/11/2020
+deadline report by/ 02/11/2020 by/ 02/11/2020
 event class Friday 4-6pm
+event class /at Friday 4-6pm /at Friday 4-6pm
 bye bye
 delete 10
 delete9

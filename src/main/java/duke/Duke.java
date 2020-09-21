@@ -5,7 +5,16 @@ package duke;
   https://github.com/nus-cs2113-AY2021S1/contacts/blob/master/src/main/java/Contacts1.java
  */
 
-import duke.exception.*;
+import duke.exception.InvalidCommandException;
+import duke.exception.InvalidTaskTypeException;
+import duke.exception.TodoDescriptionNotFoundException;
+import duke.exception.DeadlineDescriptionNotFoundException;
+import duke.exception.DeadlineTimeNotFoundException;
+import duke.exception.EventDescriptionNotFoundException;
+import duke.exception.EventTimeNotFoundException;
+import duke.exception.EmptyTaskListException;
+import duke.exception.InvalidTaskIndexException;
+import duke.exception.TaskIndexNotFoundException;
 import duke.task.Task;
 
 import java.io.FileNotFoundException;

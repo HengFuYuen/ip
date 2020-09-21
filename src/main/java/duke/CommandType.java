@@ -8,9 +8,7 @@ public enum CommandType {
     CLEAR ("clear", "clear".length()),
     TODO ("todo", "todo".length()),
     DEADLINE ("deadline", "deadline".length()),
-    EVENT ("event", "event".length()),
-    DEADLINE_TIME_INDICATOR ("/by", "/by".length()),
-    EVENT_TIME_INDICATOR ("/at", "/at".length());
+    EVENT ("event", "event".length());
 
     private final String commandWord;
     private final int commandWordLength;

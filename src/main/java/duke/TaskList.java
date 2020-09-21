@@ -9,7 +9,6 @@ import duke.exception.EventTimeNotFoundException;
 import duke.exception.EmptyTaskListException;
 import duke.exception.InvalidTaskIndexException;
 import duke.exception.TaskIndexNotFoundException;
-import duke.exception.InvalidTaskTypeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -19,30 +18,35 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    private static final ArrayList<Task> tasks = new ArrayList<>();
-    private static int numberOfTasks = 0;
-    private static int numberOfSavedTasks = 0;
+    private ArrayList<Task> tasks;
+    private int numberOfTasks;
+
+    private static final String DEADLINE_TIME_INDICATOR = "/by";
+    private static final String EVENT_TIME_INDICATOR = "/at";
 
     public TaskList() {
+        this.tasks = new ArrayList<>();
+        this.numberOfTasks = 0;
     }
 
-    protected Task getTask(int indexOfTask) {
-        return tasks.get(indexOfTask);
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+        this.numberOfTasks = tasks.size();
     }
 
-    protected int getNumberOfTasks() {
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
+
+    public int getNumberOfTasks() {
         return numberOfTasks;
     }
 
-    protected int getNumberOfSavedTasks() {
-        return numberOfSavedTasks;
-    }
-
-    protected String getRangeOfValidTaskNumber() {
+    public String getRangeOfValidTaskNumber() {
         return numberOfTasks == 0 ? "none" : "1 to " + numberOfTasks;
     }
 
-    protected Task addNewTask(String command) throws InvalidCommandException {
+    public Task addNewTask(String command) throws InvalidCommandException {
         Task newTask;
         if (command.startsWith(CommandType.TODO.getCommandWord())) {
             newTask = createTodo(command);
@@ -58,8 +62,8 @@ public class TaskList {
         return newTask;
     }
 
-    private String[] splitDescriptionAndTime(String taskInformation, CommandType splitLocation) {
-        return taskInformation.split(splitLocation.getCommandWord());
+    private String[] splitDescriptionAndTime(String taskInformation, String splitLocation) {
+        return taskInformation.split(splitLocation);
     }
 
     private boolean hasTaskDescription(String command, CommandType commandType) {
@@ -74,7 +78,7 @@ public class TaskList {
 
         String eventInformation = command.substring(CommandType.EVENT.getCommandWordLength()).trim();
         String[] eventDescriptionAndTime = splitDescriptionAndTime(eventInformation,
-                CommandType.EVENT_TIME_INDICATOR);
+                EVENT_TIME_INDICATOR);
 
         if (!hasTaskTime(eventDescriptionAndTime)) {
             throw new EventTimeNotFoundException();
@@ -93,7 +97,7 @@ public class TaskList {
 
         String deadlineInformation = command.substring(CommandType.DEADLINE.getCommandWordLength()).trim();
         String[] deadlineDescriptionAndTime = splitDescriptionAndTime(deadlineInformation
-                , CommandType.DEADLINE_TIME_INDICATOR);
+                , DEADLINE_TIME_INDICATOR);
 
         if (!hasTaskTime(deadlineDescriptionAndTime)) {
             throw new DeadlineTimeNotFoundException();
@@ -117,7 +121,7 @@ public class TaskList {
         return new Todo(todoDescription);
     }
 
-    protected Task markTaskAsDone(String command) throws TaskIndexNotFoundException,
+    public Task markTaskAsDone(String command) throws TaskIndexNotFoundException,
             InvalidTaskIndexException, EmptyTaskListException {
         if (isEmpty()) {
             throw new EmptyTaskListException();
@@ -135,7 +139,7 @@ public class TaskList {
         return taskMarkedAsDone;
     }
 
-    protected Task deleteTask(String command) throws TaskIndexNotFoundException,
+    public Task deleteTask(String command) throws TaskIndexNotFoundException,
             InvalidTaskIndexException, EmptyTaskListException {
         if (isEmpty()) {
             throw new EmptyTaskListException();
@@ -162,7 +166,7 @@ public class TaskList {
         return command.length() > commandType.getCommandWordLength();
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return numberOfTasks == 0;
     }
 
@@ -171,46 +175,11 @@ public class TaskList {
         numberOfTasks = 0;
     }
 
-    public void addSavedTask(String savedTask) throws InvalidTaskTypeException {
-        Task savedTaskToBeAdded;
-        if (savedTask.startsWith("T")) {
-            savedTaskToBeAdded = createSavedTodo(savedTask);
-        } else if (savedTask.startsWith("D")) {
-            savedTaskToBeAdded = createSavedDeadline(savedTask);
-        } else if (savedTask.startsWith("E")) {
-            savedTaskToBeAdded = createSavedEvent(savedTask);
-        } else {
-            throw new InvalidTaskTypeException();
+    public void printTasks() {
+        int taskNumber = 1;
+        for (Task task : tasks) {
+            System.out.println("  " + (taskNumber) + "." + task);
+            taskNumber++;
         }
-        tasks.add(savedTaskToBeAdded);
-        numberOfSavedTasks++;
-        numberOfTasks++;
-    }
-
-    private String[] splitTaskInformation(String taskInformation) {
-        return taskInformation.split(":");
-    }
-
-    private Event createSavedEvent(String savedTask) {
-        String[] savedEventInformation = splitTaskInformation(savedTask);
-        boolean isSavedEventDone = savedEventInformation[1].trim().equals(Task.TASK_DONE_ICON);
-        String savedEventDescription = savedEventInformation[2].trim();
-        String savedEventTime = savedEventInformation[3].trim();
-        return new Event(savedEventDescription, savedEventTime, isSavedEventDone);
-    }
-
-    private Deadline createSavedDeadline(String savedTask) {
-        String[] savedDeadlineInformation = splitTaskInformation(savedTask);
-        boolean isSavedDeadlineDone = savedDeadlineInformation[1].trim().equals(Task.TASK_DONE_ICON);
-        String savedDeadlineDescription = savedDeadlineInformation[2].trim();
-        String savedDeadlineTime = savedDeadlineInformation[3].trim();
-        return new Deadline(savedDeadlineDescription, savedDeadlineTime, isSavedDeadlineDone);
-    }
-
-    private Todo createSavedTodo(String savedTask) {
-        String[] savedTodoInformation = splitTaskInformation(savedTask);
-        boolean isSavedTodoDone = savedTodoInformation[1].trim().equals(Task.TASK_DONE_ICON);
-        String savedTodoDescription = savedTodoInformation[2].trim();
-        return new Todo(savedTodoDescription,isSavedTodoDone);
     }
 }

@@ -26,12 +26,18 @@ Please add a task to the task list.
   To add an event: event <description of event> /at <the event time>
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
-:( OOPS!!! The task list is empty.
+:( OOPS!!! The task to mark as done is not found.
 
-Please add a task to the task list.
-  To add a todo: todo <description of todo>
-  To add a deadline: deadline <description of deadline> /by <time it is due>
-  To add an event: event <description of event> /at <the event time>
+Please input in the following format:
+Range of valid task number: none
+  To mark a task as done: done <task number>
+_____________________________________________________________________________________________
+_____________________________________________________________________________________________
+:( OOPS!!! The task to delete is not found.
+
+Please input in the following format:
+Range of valid task number: none
+  To delete a task: delete <task number>
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 :( OOPS!!! I'm sorry, but I don't know what that means :-(

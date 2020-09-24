@@ -1,6 +1,7 @@
 delete 1
 done 1
 done
+delete
 read book
 todo read book
 deadline return book /by June 6th

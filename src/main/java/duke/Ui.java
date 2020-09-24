@@ -22,7 +22,7 @@ public class Ui {
     static final String DIVIDER =
             "_____________________________________________________________________________________________";
 
-    private static Scanner SCANNER = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public Ui() {
     }
@@ -72,14 +72,15 @@ public class Ui {
 
     public void printInvalidTaskToDeleteIndexErrorMessage(String rangeOfValidTaskNumbers) {
         System.out.println(DIVIDER);
-        System.out.println(START_OF_ERROR_MESSAGE + "The task to delete is invalid." + System.lineSeparator());
+        System.out.println(START_OF_ERROR_MESSAGE + "The task to delete is invalid."
+                + System.lineSeparator());
         System.out.println(INPUT_INSTRUCTION_MESSAGE);
         System.out.println(RANGE_OF_VALID_TASK_NUMBER_MESSAGE + rangeOfValidTaskNumbers);
         System.out.println(DELETE_TASK_INPUT_FORMAT);
         System.out.println(DIVIDER);
     }
 
-    public void printTaskToDeleteIndexNotFoundErrorMessage(String rangeOfValidTaskNumbers) {
+    public void printDeleteTaskIndexNotFoundErrorMessage(String rangeOfValidTaskNumbers) {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The task to delete is not found." + System.lineSeparator());
         System.out.println(INPUT_INSTRUCTION_MESSAGE);
@@ -96,7 +97,7 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    public void printTaskToMarkAsDoneIndexNotFoundErrorMessage(String rangeOfValidTaskNumbers) {
+    public void printMarkAsDoneTaskIndexNotFoundErrorMessage(String rangeOfValidTaskNumbers) {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The task to mark as done is not found."
                 + System.lineSeparator());

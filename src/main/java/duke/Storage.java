@@ -84,9 +84,9 @@ public class Storage {
         return new Todo(savedTodoDescription, isSavedTodoDone);
     }
 
-    private void addTaskToDukeFile(Task taskToSave, boolean firstTask) throws IOException {
+    public void saveTask(Task taskToSave) throws IOException {
         FileWriter fw = new FileWriter(dukeFile, true);
-        if (!firstTask) {
+        if (dukeFile.length() != 0) {
             fw.write(System.lineSeparator());
         }
         fw.write(taskToSave.messageToStoreInDukeFile());
@@ -96,10 +96,13 @@ public class Storage {
     public void update(ArrayList<Task> tasks) throws IOException {
         dukeFile.delete();
         dukeFile.createNewFile();
-        boolean firstTask = true;
         for (Task task : tasks) {
-            addTaskToDukeFile(task, firstTask);
-            firstTask = false;
+            saveTask(task);
         }
+    }
+
+    public void clear() throws IOException {
+        dukeFile.delete();
+        dukeFile.createNewFile();
     }
 }

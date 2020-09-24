@@ -6,51 +6,36 @@ read book
 todo read book
 deadline return book /by June 6th
 event project meeting /at Aug 6th 2-4pm
-todo join sports club
 done 1
-done 4
-todo borrow book
-list
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
-buy bread
 list
 done 8
+clear
 list
-done
 todo
 deadline
 deadline return card
 event
 event class
-done -1
-done 5      6
 todobuybread
 todo     clean     room
 deadlinecs2113homework/byWednesday2359
 deadline     lab report     /by     Tuesday 12pm
 eventcareertalk/atMonday2pm-3pm
 event     interview     /at     Sunday     3-4pm
+done -1
+done 5      6
+done2
 done nothing
-list
-done 11
-done12
-list
 deadline report 02/11/2020
 deadline report by/ 02/11/2020 by/ 02/11/2020
 event class Friday 4-6pm
 event class /at Friday 4-6pm /at Friday 4-6pm
 bye bye
-delete 10
-delete9
+delete 3
+delete2
 delete
 delete -10
 delete 6    7
 delete 12
-list
-clear
-todo read book
-deadline return book /by June 6th
-event project meeting /at Aug 6th 2-4pm
 list
 bye

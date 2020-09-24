@@ -69,88 +69,28 @@ Got it. I've added this task:
 Now you have 3 task(s) in the list.
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
-Got it. I've added this task:
-  [T][N] join sports club
-Now you have 4 task(s) in the list.
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
 Nice! I've marked this task as done:
   [T][Y] read book
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
-Nice! I've marked this task as done:
-  [T][Y] join sports club
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
-Got it. I've added this task:
-  [T][N] borrow book
-Now you have 5 task(s) in the list.
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
 Here are the tasks in your list:
   1.[T][Y] read book
   2.[D][N] return book (by: June 6th)
   3.[E][N] project meeting (at: Aug 6th 2-4pm)
-  4.[T][Y] join sports club
-  5.[T][N] borrow book
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
-Got it. I've added this task:
-  [D][N] return book (by: Sunday)
-Now you have 6 task(s) in the list.
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
-Got it. I've added this task:
-  [E][N] project meeting (at: Mon 2-4pm)
-Now you have 7 task(s) in the list.
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
-:( OOPS!!! I'm sorry, but I don't know what that means :-(
-
-Please input in the following format:
-Range of valid task number: 1 to 7
-  To add a todo: todo <description of todo>
-  To add a deadline: deadline <description of deadline> /by <time it is due>
-  To add an event: event <description of event> /at <the event time>
-  To list all tasks: list
-  To mark a task as done: done <task number>
-  To delete a task: delete <task number>
-  To clear task list: clear
-  To exit Duke: bye
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
-Here are the tasks in your list:
-  1.[T][Y] read book
-  2.[D][N] return book (by: June 6th)
-  3.[E][N] project meeting (at: Aug 6th 2-4pm)
-  4.[T][Y] join sports club
-  5.[T][N] borrow book
-  6.[D][N] return book (by: Sunday)
-  7.[E][N] project meeting (at: Mon 2-4pm)
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 :( OOPS!!! The task to mark as done is invalid.
 
 Please input in the following format:
-Range of valid task number: 1 to 7
+Range of valid task number: 1 to 3
   To mark a task as done: done <task number>
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
-Here are the tasks in your list:
-  1.[T][Y] read book
-  2.[D][N] return book (by: June 6th)
-  3.[E][N] project meeting (at: Aug 6th 2-4pm)
-  4.[T][Y] join sports club
-  5.[T][N] borrow book
-  6.[D][N] return book (by: Sunday)
-  7.[E][N] project meeting (at: Mon 2-4pm)
+All previous data has been deleted...
+The task list is now empty.
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
-:( OOPS!!! The task to mark as done is not found.
-
-Please input in the following format:
-Range of valid task number: 1 to 7
-  To mark a task as done: done <task number>
+The task list is empty.
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 :( OOPS!!! The description of a todo cannot be empty.
@@ -183,95 +123,59 @@ Please input in the following format:
   To add an event: event <description of event> /at <the event time>
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
-:( OOPS!!! The task to mark as done is invalid.
-
-Please input in the following format:
-Range of valid task number: 1 to 7
-  To mark a task as done: done <task number>
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
-:( OOPS!!! The task to mark as done is invalid.
-
-Please input in the following format:
-Range of valid task number: 1 to 7
-  To mark a task as done: done <task number>
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
 Got it. I've added this task:
   [T][N] buybread
-Now you have 8 task(s) in the list.
+Now you have 1 task(s) in the list.
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 Got it. I've added this task:
   [T][N] clean     room
-Now you have 9 task(s) in the list.
+Now you have 2 task(s) in the list.
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 Got it. I've added this task:
   [D][N] cs2113homework (by: Wednesday2359)
-Now you have 10 task(s) in the list.
+Now you have 3 task(s) in the list.
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 Got it. I've added this task:
   [D][N] lab report (by: Tuesday 12pm)
-Now you have 11 task(s) in the list.
+Now you have 4 task(s) in the list.
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 Got it. I've added this task:
   [E][N] careertalk (at: Monday2pm-3pm)
-Now you have 12 task(s) in the list.
+Now you have 5 task(s) in the list.
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 Got it. I've added this task:
   [E][N] interview (at: Sunday     3-4pm)
-Now you have 13 task(s) in the list.
+Now you have 6 task(s) in the list.
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 :( OOPS!!! The task to mark as done is invalid.
 
 Please input in the following format:
-Range of valid task number: 1 to 13
+Range of valid task number: 1 to 6
   To mark a task as done: done <task number>
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
-Here are the tasks in your list:
-  1.[T][Y] read book
-  2.[D][N] return book (by: June 6th)
-  3.[E][N] project meeting (at: Aug 6th 2-4pm)
-  4.[T][Y] join sports club
-  5.[T][N] borrow book
-  6.[D][N] return book (by: Sunday)
-  7.[E][N] project meeting (at: Mon 2-4pm)
-  8.[T][N] buybread
-  9.[T][N] clean     room
-  10.[D][N] cs2113homework (by: Wednesday2359)
-  11.[D][N] lab report (by: Tuesday 12pm)
-  12.[E][N] careertalk (at: Monday2pm-3pm)
-  13.[E][N] interview (at: Sunday     3-4pm)
+:( OOPS!!! The task to mark as done is invalid.
+
+Please input in the following format:
+Range of valid task number: 1 to 6
+  To mark a task as done: done <task number>
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 Nice! I've marked this task as done:
-  [D][Y] lab report (by: Tuesday 12pm)
+  [T][Y] clean     room
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
-Nice! I've marked this task as done:
-  [E][Y] careertalk (at: Monday2pm-3pm)
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
-Here are the tasks in your list:
-  1.[T][Y] read book
-  2.[D][N] return book (by: June 6th)
-  3.[E][N] project meeting (at: Aug 6th 2-4pm)
-  4.[T][Y] join sports club
-  5.[T][N] borrow book
-  6.[D][N] return book (by: Sunday)
-  7.[E][N] project meeting (at: Mon 2-4pm)
-  8.[T][N] buybread
-  9.[T][N] clean     room
-  10.[D][N] cs2113homework (by: Wednesday2359)
-  11.[D][Y] lab report (by: Tuesday 12pm)
-  12.[E][Y] careertalk (at: Monday2pm-3pm)
-  13.[E][N] interview (at: Sunday     3-4pm)
+:( OOPS!!! The task to mark as done is invalid.
+
+Please input in the following format:
+Range of valid task number: 1 to 6
+  To mark a task as done: done <task number>
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 :( OOPS!!! The time the deadline is due is not found as none or too many timings were given.
@@ -301,7 +205,7 @@ ________________________________________________________________________________
 :( OOPS!!! I'm sorry, but I don't know what that means :-(
 
 Please input in the following format:
-Range of valid task number: 1 to 13
+Range of valid task number: 1 to 6
   To add a todo: todo <description of todo>
   To add a deadline: deadline <description of deadline> /by <time it is due>
   To add an event: event <description of event> /at <the event time>
@@ -314,79 +218,47 @@ ________________________________________________________________________________
 _____________________________________________________________________________________________
 Noted. I've removed this task:
   [D][N] cs2113homework (by: Wednesday2359)
-Now you have 12 task(s) in the list.
+Now you have 5 task(s) in the list.
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 Noted. I've removed this task:
-  [T][N] clean     room
-Now you have 11 task(s) in the list.
+  [T][Y] clean     room
+Now you have 4 task(s) in the list.
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 :( OOPS!!! The task to delete is not found.
 
 Please input in the following format:
-Range of valid task number: 1 to 11
+Range of valid task number: 1 to 4
   To delete a task: delete <task number>
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 :( OOPS!!! The task to delete is invalid.
 
 Please input in the following format:
-Range of valid task number: 1 to 11
+Range of valid task number: 1 to 4
   To delete a task: delete <task number>
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 :( OOPS!!! The task to delete is invalid.
 
 Please input in the following format:
-Range of valid task number: 1 to 11
+Range of valid task number: 1 to 4
   To delete a task: delete <task number>
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 :( OOPS!!! The task to delete is invalid.
 
 Please input in the following format:
-Range of valid task number: 1 to 11
+Range of valid task number: 1 to 4
   To delete a task: delete <task number>
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 Here are the tasks in your list:
-  1.[T][Y] read book
-  2.[D][N] return book (by: June 6th)
-  3.[E][N] project meeting (at: Aug 6th 2-4pm)
-  4.[T][Y] join sports club
-  5.[T][N] borrow book
-  6.[D][N] return book (by: Sunday)
-  7.[E][N] project meeting (at: Mon 2-4pm)
-  8.[T][N] buybread
-  9.[D][Y] lab report (by: Tuesday 12pm)
-  10.[E][Y] careertalk (at: Monday2pm-3pm)
-  11.[E][N] interview (at: Sunday     3-4pm)
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
-All previous data has been deleted...
-The task list is now empty.
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
-Got it. I've added this task:
-  [T][N] read book
-Now you have 1 task(s) in the list.
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
-Got it. I've added this task:
-  [D][N] return book (by: June 6th)
-Now you have 2 task(s) in the list.
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
-Got it. I've added this task:
-  [E][N] project meeting (at: Aug 6th 2-4pm)
-Now you have 3 task(s) in the list.
-_____________________________________________________________________________________________
-_____________________________________________________________________________________________
-Here are the tasks in your list:
-  1.[T][N] read book
-  2.[D][N] return book (by: June 6th)
-  3.[E][N] project meeting (at: Aug 6th 2-4pm)
+  1.[T][N] buybread
+  2.[D][N] lab report (by: Tuesday 12pm)
+  3.[E][N] careertalk (at: Monday2pm-3pm)
+  4.[E][N] interview (at: Sunday     3-4pm)
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 Bye. Hope to see you again soon!

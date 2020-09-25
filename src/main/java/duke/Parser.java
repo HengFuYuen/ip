@@ -7,6 +7,7 @@ import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.DoneCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.TodoCommand;
 import duke.exception.DeadlineDescriptionNotFoundException;
@@ -16,13 +17,13 @@ import duke.exception.DeleteTaskIndexNotFoundException;
 import duke.exception.EventDescriptionNotFoundException;
 import duke.exception.EventTimeNotFoundException;
 import duke.exception.InvalidCommandException;
+import duke.exception.KeywordNotFoundException;
 import duke.exception.MarkAsDoneNumberFormatException;
 import duke.exception.MarkAsDoneTaskIndexNotFoundException;
 import duke.exception.TodoDescriptionNotFoundException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
-
 
 public class Parser {
 
@@ -48,10 +49,24 @@ public class Parser {
             command = createEventCommand(fullCommand);
         } else if (fullCommand.startsWith(TodoCommand.COMMAND_WORD)) {
             command = createTodoCommand(fullCommand);
+        } else if (fullCommand.startsWith(FindCommand.COMMAND_WORD)) {
+            command = createFindCommand(fullCommand);
         } else {
             throw new InvalidCommandException();
         }
         return command;
+    }
+
+    private FindCommand createFindCommand(String fullCommand) throws KeywordNotFoundException {
+        String keyword = fullCommand.substring(FindCommand.COMMAND_WORD_LENGTH).trim();
+        if (!isKeywordGiven(keyword)) {
+            throw new KeywordNotFoundException();
+        }
+        return new FindCommand(keyword);
+    }
+
+    private boolean isKeywordGiven(String keyword) {
+        return keyword.length() > 0;
     }
 
     private ListCommand createListCommand() {

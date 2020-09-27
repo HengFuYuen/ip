@@ -29,7 +29,7 @@ Adds a todo, a task without any date/time attached, to Duke.
 
 Format: `todo DESCRIPTION`
 
-Example of usage:`todo buy bread`
+Example of usage: `todo buy bread`
 
 Expected outcome:<br/>
 `Got it. I've added this task:`<br/>
@@ -41,7 +41,7 @@ Adds a deadline, a task that needs to be done before a specific time/date, to Du
 
 Format: `deadline DESCRIPTION /by TIME_IT_IS_DUE_BY`
 
-Example of usage:`deadline return book /by Sunday 1pm`
+Example of usage: `deadline return book /by Sunday 1pm`
 
 Expected outcome:<br/>
 `Got it. I've added this task:`<br/>
@@ -65,7 +65,7 @@ Shows a list of all tasks in Duke.
 
 Format: `list`
 
-Example of usage:`list`
+Example of usage: `list`
 
 Expected outcome:<br/>
 `Here are the tasks in your list:`<br/>
@@ -81,7 +81,7 @@ Format: `delete TASK_INDEX`
 * The `TASK_INDEX` refers to the task number shown in the displayed task list.
 * The `TASK_INDEX` **must be a positive integer** greater than 0.
 
-Example of usage:`delete 2`
+Example of usage: `delete 2`
 
 Expected outcome:<br/>
 `Noted. I've removed this task:`<br/>
@@ -96,7 +96,7 @@ Format: `done TASK_INDEX`
 * The `TASK_INDEX` refers to the task number shown in the displayed task list.
 * The `TASK_INDEX` **must be a positive integer** greater than 0.
 
-Example of usage:`done 1`
+Example of usage: `done 1`
 
 Expected outcome:<br/>
 `Nice! I've marked this task as done:`<br/>
@@ -110,7 +110,7 @@ Format: `find KEYWORD`
 * Both the task description and timing (if any) will be searched.
 * The task number of the task shown corresponds to its task number in the full displayed task list.
 
-Example of usage:`find meeting`
+Example of usage: `find meeting`
 
 Expected outcome:<br/>
 `Here is(are) the 1 matching task(s) in your list:`<br/>
@@ -121,7 +121,7 @@ Clears all tasks from Duke.
 
 Format: `clear`
 
-Example of usage:`clear`
+Example of usage: `clear`
 
 Expected outcome:<br/>
 `All previous data has been deleted...`<br/>
@@ -132,7 +132,7 @@ Exits Duke.
 
 Format: `bye`
 
-Example of usage:`bye`
+Example of usage: `bye`
 
 Expected outcome:<br/>
 `Bye. Hope to see you again soon!`
@@ -143,13 +143,13 @@ Duke data is automatically saved in the hard disk whenever any changes to the da
 
 ## Command Summary
 Command | Format, Examples
-------- | ----------------
-todo | `todo DESCRIPTION`<br/> e.g.,`todo buy bread`
-deadline | `deadline DESCRIPTION by/ TIME_DEADLINE_IS_DUE`<br/> e.g.,`deadline return book /by Sunday 1pm`
-event | `event DESCRIPTION at/ EVENT_TIMING`<br/> e.g.,`event meeting /at 30/10/2020 1300-1400`
+--- | ---
+todo | `todo DESCRIPTION`<br/> e.g., `todo buy bread`
+deadline | `deadline DESCRIPTION by/ TIME_DEADLINE_IS_DUE`<br/> e.g., `deadline return book /by Sunday 1pm`
+event | `event DESCRIPTION at/ EVENT_TIMING`<br/> e.g., `event meeting /at 30/10/2020 1300-1400`
 list | `list`
-delete | `delete TASK_INDEX`<br/> e.g.,`delete 2`
-done | `done TASK_INDEX`<br/> e.g.,`done 1`
+delete | `delete TASK_INDEX`<br/> e.g., `delete 2`
+done | `done TASK_INDEX`<br/> e.g., `done 1`
 find | `find KEYWORD`<br/> e.g., `find meeting`
 clear | `clear`
 bye | `bye`

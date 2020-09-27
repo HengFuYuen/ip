@@ -258,7 +258,8 @@ public class Ui {
     }
 
     /**
-     * Prints an error message when a keyword to search for in the task list is not given.
+     * Prints an error message when a keyword to search for in the task list is not given and provide the
+     * correct input format for finding tasks using a keyword.
      */
     public void printKeywordNotFoundErrorMessage() {
         System.out.println(DIVIDER);

@@ -13,6 +13,7 @@ public class ClearCommand extends Command {
     public ClearCommand() {
     }
 
+    @Override
     public void execute (TaskList tasks, Ui ui, Storage storage) {
         tasks.clear();
         ui.printClearTaskListMessage();

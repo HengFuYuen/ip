@@ -21,6 +21,7 @@ public class EventCommand extends Command {
         this.newEvent = newEvent;
     }
 
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.add(newEvent);
         ui.printNewTask(newEvent, tasks.getNumberOfTasks());

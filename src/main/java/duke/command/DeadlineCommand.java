@@ -20,6 +20,7 @@ public class DeadlineCommand extends Command {
         this.newDeadline = newDeadline;
     }
 
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.add(newDeadline);
         ui.printNewTask(newDeadline, tasks.getNumberOfTasks());

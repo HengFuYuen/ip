@@ -26,6 +26,14 @@ Please add a task to the task list.
   To add an event: event <description of event> /at <the event time>
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
+:( OOPS!!! The task list is empty.
+
+Please add a task to the task list.
+  To add a todo: todo <description of todo>
+  To add a deadline: deadline <description of deadline> /by <time it is due>
+  To add an event: event <description of event> /at <the event time>
+_____________________________________________________________________________________________
+_____________________________________________________________________________________________
 :( OOPS!!! The task to mark as done is not found.
 
 Please input in the following format:
@@ -51,6 +59,7 @@ Range of valid task number: none
   To mark a task as done: done <task number>
   To delete a task: delete <task number>
   To clear task list: clear
+  To find task(s): find <keyword>
   To exit Duke: bye
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
@@ -213,6 +222,7 @@ Range of valid task number: 1 to 6
   To mark a task as done: done <task number>
   To delete a task: delete <task number>
   To clear task list: clear
+  To find task(s): find <keyword>
   To exit Duke: bye
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
@@ -259,6 +269,25 @@ Here are the tasks in your list:
   2.[D][N] lab report (by: Tuesday 12pm)
   3.[E][N] careertalk (at: Monday2pm-3pm)
   4.[E][N] interview (at: Sunday     3-4pm)
+_____________________________________________________________________________________________
+_____________________________________________________________________________________________
+Here is(are) the 3 matching task(s) in your list:
+  1.[T][N] buybread
+  2.[D][N] lab report (by: Tuesday 12pm)
+  3.[E][N] careertalk (at: Monday2pm-3pm)
+_____________________________________________________________________________________________
+_____________________________________________________________________________________________
+:( OOPS!!! The keyword to search for is not found.
+
+Please input in the following format:
+  To find task(s): find <keyword>
+_____________________________________________________________________________________________
+_____________________________________________________________________________________________
+Here is(are) the 1 matching task(s) in your list:
+  3.[E][N] careertalk (at: Monday2pm-3pm)
+_____________________________________________________________________________________________
+_____________________________________________________________________________________________
+There are no matching task(s) in your list.
 _____________________________________________________________________________________________
 _____________________________________________________________________________________________
 Bye. Hope to see you again soon!

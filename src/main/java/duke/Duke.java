@@ -15,6 +15,7 @@ import duke.exception.EventDescriptionNotFoundException;
 import duke.exception.EventTimeNotFoundException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidTaskTypeException;
+import duke.exception.KeywordNotFoundException;
 import duke.exception.MarkAsDoneNumberFormatException;
 import duke.exception.MarkAsDoneTaskIndexNotFoundException;
 import duke.exception.TodoDescriptionNotFoundException;
@@ -56,6 +57,8 @@ public class Duke {
                 Command command = parser.parse(fullCommand);
                 command.execute(tasks, ui, storage);
                 isExit = command.isExit();
+            } catch (KeywordNotFoundException e) {
+                ui.printKeywordNotFoundErrorMessage();
             } catch (MarkAsDoneTaskIndexNotFoundException e) {
                 ui.printMarkAsDoneTaskIndexNotFoundErrorMessage(tasks.getRangeOfValidTaskNumber());
             } catch (DeleteTaskIndexNotFoundException e) {

@@ -20,6 +20,7 @@ public class DoneCommand extends Command {
         this.taskIndex = taskIndex;
     }
 
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             Task taskMarkedAsDone = tasks.markTaskAsDone(taskIndex);

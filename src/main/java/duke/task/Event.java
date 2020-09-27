@@ -2,16 +2,24 @@ package duke.task;
 
 public class Event extends Task {
 
-    protected String at;
+    private final String at;
+    private final String allInformation;
 
     public Event(String description, String at) {
         super(description);
         this.at = at;
+        allInformation = description + "" + at;
     }
 
     public Event(String description, String at ,boolean isDone) {
         super(description, isDone);
         this.at = at;
+        allInformation = description + "" + at;
+    }
+
+    @Override
+    public String getAllInformation() {
+        return allInformation;
     }
 
     public String messageToStoreInDukeFile() {

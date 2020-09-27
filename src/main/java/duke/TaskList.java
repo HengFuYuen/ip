@@ -5,6 +5,7 @@ import duke.exception.InvalidTaskIndexException;
 import duke.task.Task;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class TaskList {
 
@@ -69,5 +70,21 @@ public class TaskList {
     public void clear() {
         tasks.clear();
         numberOfTasks = 0;
+    }
+
+    /**
+     * Returns an arraylist of tasks in the task list containing the given keyword.
+     *
+     * @param keyword The keyword to search for.
+     * @return An arraylist of tasks in the task list containing the given keyword.
+     * @throws EmptyTaskListException If the task list is empty.
+     */
+    public ArrayList<Task> find(String keyword) throws EmptyTaskListException {
+        if (isEmpty()) {
+            throw new EmptyTaskListException();
+        }
+        return (ArrayList<Task>) tasks.stream()
+                .filter((task) -> task.getAllInformation().contains(keyword))
+                .collect(Collectors.toList());
     }
 }

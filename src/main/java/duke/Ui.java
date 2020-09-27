@@ -18,6 +18,7 @@ public class Ui {
     static final String EVENT_INPUT_FORMAT = "  To add an event: event <description of event> /at "
             + "<the event time>";
     static final String EXIT_INPUT_FORMAT = "  To exit Duke: bye";
+    static final String FIND_INPUT_FORMAT = "  To find task(s): find <keyword>";
     static final String CLEAR_TASK_LIST_INPUT_FORMAT = "  To clear task list: clear";
     static final String DIVIDER =
             "_____________________________________________________________________________________________";
@@ -146,6 +147,7 @@ public class Ui {
         System.out.println(MARK_TASK_AS_DONE_INPUT_FORMAT);
         System.out.println(DELETE_TASK_INPUT_FORMAT);
         System.out.println(CLEAR_TASK_LIST_INPUT_FORMAT);
+        System.out.println(FIND_INPUT_FORMAT);
         System.out.println(EXIT_INPUT_FORMAT);
         System.out.println(DIVIDER);
     }
@@ -228,6 +230,43 @@ public class Ui {
     public void printExitMessage() {
         System.out.println(DIVIDER);
         System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(DIVIDER);
+    }
+
+    /**
+     * Prints out all the tasks in the task list containing the keyword given in the order that they were
+     * added.
+     * The tasks containing the keyword is numbered after its original task index in the full task list.
+     *
+     * @param tasksWithKeyword The arraylist containing all the tasks with the given keyword.
+     * @param tasks The arraylist containing all the tasks in the task list.
+     */
+    public void printTasksWithKeyword(ArrayList<Task> tasksWithKeyword, ArrayList<Task> tasks) {
+        System.out.println(DIVIDER);
+        if (tasksWithKeyword.isEmpty()) {
+            System.out.println("There are no matching task(s) in your list.");
+        } else {
+            int numberOfTasksWithKeyword = tasksWithKeyword.size();
+            System.out.println("Here is(are) the " + numberOfTasksWithKeyword + " matching task(s) in your " +
+                    "list:");
+            for (Task task : tasksWithKeyword) {
+                int taskIndexInUnfilteredTaskList = tasks.indexOf(task) + 1;
+                System.out.println("  " + (taskIndexInUnfilteredTaskList) + "." + task);
+            }
+        }
+        System.out.println(DIVIDER);
+    }
+
+    /**
+     * Prints an error message when a keyword to search for in the task list is not given and provide the
+     * correct input format for finding tasks using a keyword.
+     */
+    public void printKeywordNotFoundErrorMessage() {
+        System.out.println(DIVIDER);
+        System.out.println(START_OF_ERROR_MESSAGE + "The keyword to search for is not found."
+                + System.lineSeparator());
+        System.out.println(INPUT_INSTRUCTION_MESSAGE);
+        System.out.println(FIND_INPUT_FORMAT);
         System.out.println(DIVIDER);
     }
 }

@@ -10,7 +10,8 @@ package duke.task;
 public class Deadline extends Task {
 
     /* The time a deadline task is due by */
-    protected String by;
+    private final String by;
+    private final String allInformation;
 
     /**
      * Constructs a <code>Deadline</code> object with the given description and timing at which it is due
@@ -22,6 +23,7 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
+        allInformation = description + "" + by;
     }
 
     /**
@@ -35,6 +37,12 @@ public class Deadline extends Task {
     public Deadline(String description, String by, boolean isDone) {
         super(description, isDone);
         this.by = by;
+        allInformation = description + "" + by;
+    }
+
+    @Override
+    public String getAllInformation() {
+        return allInformation;
     }
 
     /**

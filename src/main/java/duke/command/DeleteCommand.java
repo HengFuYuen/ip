@@ -41,6 +41,7 @@ public class DeleteCommand extends Command {
      * @param ui The ui in charge of user interaction.
      * @param storage The storage that saves tasks into a file and loads tasks from the file.
      */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             Task taskDeleted = tasks.delete(taskIndex);

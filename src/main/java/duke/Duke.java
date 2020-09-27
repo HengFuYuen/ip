@@ -15,6 +15,7 @@ import duke.exception.EventDescriptionNotFoundException;
 import duke.exception.EventTimeNotFoundException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidTaskTypeException;
+import duke.exception.KeywordNotFoundException;
 import duke.exception.MarkAsDoneNumberFormatException;
 import duke.exception.TaskIndexToMarkAsDoneNotFoundException;
 import duke.exception.TodoDescriptionNotFoundException;
@@ -95,6 +96,8 @@ public class Duke {
                 ui.printTaskIndexToMarkAsDoneNotFoundErrorMessage(tasks.getRangeOfValidTaskIndex());
             } catch (TaskIndexToDeleteNotFoundException e) {
                 ui.printTaskIndexToDeleteNotFoundErrorMessage(tasks.getRangeOfValidTaskIndex());
+            } catch (KeywordNotFoundException e) {
+                ui.printKeywordNotFoundErrorMessage();
             } catch (MarkAsDoneNumberFormatException e) {
                 ui.printInvalidTaskIndexToMarkAsDoneErrorMessage(tasks.getRangeOfValidTaskIndex());
             } catch (DeleteNumberFormatException e) {

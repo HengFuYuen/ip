@@ -11,7 +11,7 @@ public abstract class Task {
 
     /* Indicates whether the task is done */
     protected boolean isDone;
-    protected String description;
+    protected final String description;
     public static final String TASK_DONE_ICON = "Y";
     public static final String TASK_NOT_DONE_ICON = "N";
 
@@ -37,6 +37,10 @@ public abstract class Task {
     protected Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+    }
+
+    public String getAllInformation() {
+        return description;
     }
 
     /**

@@ -33,6 +33,7 @@ public class EventCommand extends Command {
         this.newEvent = newEvent;
     }
 
+
     /**
      * Adds an event to the task list and storage file and informs the user that the event has been added.
      *
@@ -40,6 +41,7 @@ public class EventCommand extends Command {
      * @param ui The ui in charge of user interaction.
      * @param storage The storage that saves tasks into a file and loads tasks from the file.
      */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.add(newEvent);
         ui.printNewTask(newEvent, tasks.getNumberOfTasks());

@@ -7,6 +7,7 @@ import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.DoneCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.TodoCommand;
 import duke.exception.DeadlineDescriptionNotFoundException;
@@ -16,6 +17,7 @@ import duke.exception.TaskIndexToDeleteNotFoundException;
 import duke.exception.EventDescriptionNotFoundException;
 import duke.exception.EventTimeNotFoundException;
 import duke.exception.InvalidCommandException;
+import duke.exception.KeywordNotFoundException;
 import duke.exception.MarkAsDoneNumberFormatException;
 import duke.exception.TaskIndexToMarkAsDoneNotFoundException;
 import duke.exception.TodoDescriptionNotFoundException;
@@ -66,6 +68,8 @@ public class Parser {
             command = createEventCommand(fullCommand);
         } else if (fullCommand.startsWith(TodoCommand.COMMAND_WORD)) {
             command = createTodoCommand(fullCommand);
+        } else if (fullCommand.startsWith(FindCommand.COMMAND_WORD)) {
+            command = createFindCommand(fullCommand);
         } else {
             throw new InvalidCommandException();
         }
@@ -234,5 +238,24 @@ public class Parser {
      */
     private Command createByeCommand() {
         return new ByeCommand();
+    }
+
+    /**
+     * Returns a <code>Duke</code> understandable find command that represents a corresponding user input.
+     *
+     * @param fullCommand The user input.
+     * @return A find command.
+     * @throws KeywordNotFoundException If the keyword to find is not given.
+     */
+    private FindCommand createFindCommand(String fullCommand) throws KeywordNotFoundException {
+        String keyword = fullCommand.substring(FindCommand.COMMAND_WORD_LENGTH).trim();
+        if (!isKeywordGiven(keyword)) {
+            throw new KeywordNotFoundException();
+        }
+        return new FindCommand(keyword);
+    }
+
+    private boolean isKeywordGiven(String keyword) {
+        return keyword.length() > 0;
     }
 }

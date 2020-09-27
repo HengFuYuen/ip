@@ -20,9 +20,9 @@ public abstract class Command {
     }
 
     /**
-     * Returns <code>true</code> if exiting the application else <code>false</code>.
+     * Returns <code>true</code> if user is exiting the application.
      *
-     * @return <code>true</code> if exiting the application else <code>false</code>.
+     * @return <code>true</code> if user is exiting the application.
      */
     public boolean isExit () {
         return false;

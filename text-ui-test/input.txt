@@ -1,3 +1,4 @@
+find bread
 delete 1
 done 1
 done
@@ -38,4 +39,8 @@ delete -10
 delete 6    7
 delete 12
 list
+find re
+find
+findMonday
+find hello world
 bye

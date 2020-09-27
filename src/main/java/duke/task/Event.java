@@ -10,7 +10,8 @@ package duke.task;
 public class Event extends Task {
 
     /* The timing at which an event starts and ends */
-    protected String at;
+    private final String at;
+    private final String allInformation;
 
     /**
      * Constructs an <code>Event</code> object with the given description and time while initializing
@@ -22,6 +23,7 @@ public class Event extends Task {
     public Event(String description, String at) {
         super(description);
         this.at = at;
+        allInformation = description + "" + at;
     }
 
     /**
@@ -35,6 +37,12 @@ public class Event extends Task {
     public Event(String description, String at ,boolean isDone) {
         super(description, isDone);
         this.at = at;
+        allInformation = description + "" + at;
+    }
+
+    @Override
+    public String getAllInformation() {
+        return allInformation;
     }
 
     /**

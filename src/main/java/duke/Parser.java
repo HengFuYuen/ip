@@ -57,18 +57,6 @@ public class Parser {
         return command;
     }
 
-    private FindCommand createFindCommand(String fullCommand) throws KeywordNotFoundException {
-        String keyword = fullCommand.substring(FindCommand.COMMAND_WORD_LENGTH).trim();
-        if (!isKeywordGiven(keyword)) {
-            throw new KeywordNotFoundException();
-        }
-        return new FindCommand(keyword);
-    }
-
-    private boolean isKeywordGiven(String keyword) {
-        return keyword.length() > 0;
-    }
-
     private ListCommand createListCommand() {
         return new ListCommand();
     }
@@ -175,5 +163,24 @@ public class Parser {
 
     private Command createByeCommand() {
         return new ByeCommand();
+    }
+
+    /**
+     * Returns a <code>Duke</code> understandable find command that represents a corresponding user input.
+     *
+     * @param fullCommand The user input.
+     * @return A find command.
+     * @throws KeywordNotFoundException If the keyword to find is not given.
+     */
+    private FindCommand createFindCommand(String fullCommand) throws KeywordNotFoundException {
+        String keyword = fullCommand.substring(FindCommand.COMMAND_WORD_LENGTH).trim();
+        if (!isKeywordGiven(keyword)) {
+            throw new KeywordNotFoundException();
+        }
+        return new FindCommand(keyword);
+    }
+
+    private boolean isKeywordGiven(String keyword) {
+        return keyword.length() > 0;
     }
 }

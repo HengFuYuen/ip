@@ -72,6 +72,13 @@ public class TaskList {
         numberOfTasks = 0;
     }
 
+    /**
+     * Returns an arraylist of tasks in the task list containing the given keyword.
+     *
+     * @param keyword The keyword to search for.
+     * @return An arraylist of tasks in the task list containing the given keyword.
+     * @throws EmptyTaskListException If the task list is empty.
+     */
     public ArrayList<Task> find(String keyword) throws EmptyTaskListException {
         if (isEmpty()) {
             throw new EmptyTaskListException();

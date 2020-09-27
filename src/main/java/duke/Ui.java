@@ -233,6 +233,14 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints out all the tasks in the task list containing the keyword given in the order that they were
+     * added.
+     * The tasks containing the keyword is numbered after its original task index in the full task list.
+     *
+     * @param tasksWithKeyword The arraylist containing all the tasks with the given keyword.
+     * @param tasks The arraylist containing all the tasks in the task list.
+     */
     public void printTasksWithKeyword(ArrayList<Task> tasksWithKeyword, ArrayList<Task> tasks) {
         System.out.println(DIVIDER);
         if (tasksWithKeyword.isEmpty()) {
@@ -249,6 +257,9 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints an error message when a keyword to search for in the task list is not given.
+     */
     public void printKeywordNotFoundErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The keyword to search for is not found."

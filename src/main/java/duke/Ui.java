@@ -5,6 +5,14 @@ import duke.task.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents a text user interface.
+ * A <code>Ui</code> object deals with user interactions by reading the user command and showing users the
+ * appropriate messages after a valid command is executed or when an error occurs.
+ *
+ * @author Heng Fu Yuen
+ * @version 2.0
+ */
 public class Ui {
     static final String INPUT_INSTRUCTION_MESSAGE = "Please input in the following format:";
     static final String RANGE_OF_VALID_TASK_NUMBER_MESSAGE = "Range of valid task number: ";
@@ -24,13 +32,23 @@ public class Ui {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
+    /**
+     * Constructs a <code>Ui</code> object.
+     */
     public Ui() {
     }
 
+    /**
+     * Reads in and returns the command given.
+     * @return The command given.
+     */
     public String readCommand() {
         return SCANNER.nextLine();
     }
 
+    /**
+     * Prints the welcome message from Duke when it is first opened.
+     */
     public void printWelcomeMessage() {
         String logo = " ____        _" + System.lineSeparator()
                 + "|  _ \\ _   _| | _____" + System.lineSeparator()
@@ -43,6 +61,11 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints an error message when an IOException is thrown.
+     *
+     * @param message The place where the error occurred resulting in an IOException to be thrown.
+     */
     public void printIOExceptionErrorMessage(String message) {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "Something went wrong...");
@@ -50,19 +73,28 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints an error message when the file used to store previously saved tasks cannot be found.
+     */
     public void printFileNotFoundErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "There is no previously saved data.");
         System.out.println(DIVIDER);
     }
 
-    public void printIndexOutOfBoundsErrorMessage() {
+    /**
+     * Prints an error message when the previously saved tasks has missing data and cannot be loaded.
+     */
+    public void printDukeFileCannotBeLoadedErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "Saved data has errors...");
         System.out.println("Duke is unable to load previously saved data...");
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints a message to show that the task list has been successfully cleared and is now empty.
+     */
     public void printClearTaskListMessage() {
         System.out.println(DIVIDER);
         System.out.println("All previous data has been deleted...");
@@ -70,7 +102,13 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    public void printInvalidTaskToDeleteIndexErrorMessage(String rangeOfValidTaskNumbers) {
+    /**
+     * Prints an error message when a invalid task index to delete is given and provide input suggestions.
+     * A range of valid task indexes and correct input format for deleting a task will be shown.
+     *
+     * @param rangeOfValidTaskNumbers The range of valid task indexes of tasks that can be deleted.
+     */
+    public void printInvalidTaskIndexToDeleteErrorMessage(String rangeOfValidTaskNumbers) {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The task to delete is invalid."
                 + System.lineSeparator());
@@ -80,15 +118,29 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    public void printDeleteTaskIndexNotFoundErrorMessage(String rangeOfValidTaskNumbers) {
+    /**
+     * Prints an error message when a task index to delete is not given and provide input suggestions.
+     * A range of valid task indexes and correct input format for deleting a task will be shown.
+     *
+     * @param rangeOfValidTaskNumbers The range of valid task indexes of tasks that can be deleted.
+     */
+    public void printTaskIndexToDeleteNotFoundErrorMessage(String rangeOfValidTaskNumbers) {
         System.out.println(DIVIDER);
-        System.out.println(START_OF_ERROR_MESSAGE + "The task to delete is not found." + System.lineSeparator());
+        System.out.println(START_OF_ERROR_MESSAGE + "The task to delete is not found."
+                + System.lineSeparator());
         System.out.println(INPUT_INSTRUCTION_MESSAGE);
         System.out.println(RANGE_OF_VALID_TASK_NUMBER_MESSAGE + rangeOfValidTaskNumbers);
         System.out.println(DELETE_TASK_INPUT_FORMAT);
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints a message to show that the task specified has been deleted and how many tasks are still left
+     * in the task list.
+     *
+     * @param deletedTask The task that was deleted from the task list.
+     * @param getNumberOfTasks The number of tasks left in the task list.
+     */
     public void printDeletedTask(Task deletedTask, int getNumberOfTasks) {
         System.out.println(DIVIDER);
         System.out.println("Noted. I've removed this task:");
@@ -97,7 +149,13 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    public void printMarkAsDoneTaskIndexNotFoundErrorMessage(String rangeOfValidTaskNumbers) {
+    /**
+     * Prints an error message when a task index to mark as done is not given and provide input suggestions.
+     * A range of valid task indexes and correct input format to mark a task as done will be shown.
+     *
+     * @param rangeOfValidTaskNumbers The range of valid task indexes of tasks that can be marked as done.
+     */
+    public void printTaskIndexToMarkAsDoneNotFoundErrorMessage(String rangeOfValidTaskNumbers) {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The task to mark as done is not found."
                 + System.lineSeparator());
@@ -107,7 +165,14 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    public void printInvalidTaskToMarkAsDoneIndexErrorMessage(String rangeOfValidTaskNumbers) {
+    /**
+     * Prints an error message when a invalid task index to mark as done is given and provide input
+     * suggestions.
+     * A range of valid task indexes and correct input format to mark a task as done will be shown.
+     *
+     * @param rangeOfValidTaskNumbers The range of valid task indexes of tasks that can be marked as done.
+     */
+    public void printInvalidTaskIndexToMarkAsDoneErrorMessage(String rangeOfValidTaskNumbers) {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The task to mark as done is invalid."
                 + System.lineSeparator());
@@ -117,6 +182,10 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints an error message when a command to delete or mark a task as done is given in the correct
+     * format but the task list is empty.
+     */
     public void printEmptyTaskListErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The task list is empty." + System.lineSeparator());
@@ -127,12 +196,22 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints an error message when the task type of a previously saved task cannot be deciphered.
+     */
     public void printInvalidTaskTypeErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The task is neither a todo nor a deadline nor an event.");
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints an error message when an invalid command is given and provide input suggestions.
+     * A range of valid task indexes and correct input formats for the various commands will be shown.
+     *
+     * @param rangeOfValidTaskNumbers The range of valid task indexes of tasks that can be deleted or marked
+     *                               as done.
+     */
     public void printInvalidCommandErrorMessage(String rangeOfValidTaskNumbers) {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "I'm sorry, but I don't know what that means :-("
@@ -150,6 +229,9 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints an error message when a command to add a todo task without a description is given.
+     */
     public void printTodoDescriptionNotFoundErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The description of a todo cannot be empty."
@@ -159,6 +241,9 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints an error message when a command to add a deadline task without a description is given.
+     */
     public void printDeadlineDescriptionNotFoundErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The description of a deadline cannot be empty."
@@ -168,6 +253,10 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints an error message when a command to add a deadline task without a timing at which it is due is
+     * given.
+     */
     public void printDeadlineTimeNotFoundErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The time the deadline is due is not found as none or " +
@@ -177,6 +266,9 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints an error message when a command to add an event task without a description is given.
+     */
     public void printEventDescriptionNotFoundErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The description of an event cannot be empty."
@@ -186,6 +278,9 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints an error message when a command to add an event task without a timing is given.
+     */
     public void printEventTimeNotFoundErrorMessage() {
         System.out.println(DIVIDER);
         System.out.println(START_OF_ERROR_MESSAGE + "The event timing is not found as none or too " +
@@ -195,6 +290,13 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints a message to show that the task specified has been added and how many tasks are in the task
+     * list.
+     *
+     * @param newTask The new task that was added to the task list.
+     * @param getNumberOfTasks The number of tasks in the task list.
+     */
     public void printNewTask(Task newTask, int getNumberOfTasks) {
         System.out.println(DIVIDER);
         System.out.println("Got it. I've added this task:");
@@ -203,6 +305,11 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints a message to show that the task specified has been marked as done.
+     *
+     * @param taskMarkedAsDone The task that was marked as done.
+     */
     public void printTaskMarkedAsDone(Task taskMarkedAsDone) {
         System.out.println(DIVIDER);
         System.out.println("Nice! I've marked this task as done:");
@@ -210,6 +317,12 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints out all the tasks in the task list in the order that they were added or a message stating
+     * that the task list is empty if there are no tasks.
+     *
+     * @param tasks The arraylist containing all the tasks in the task list.
+     */
     public void printTaskList(ArrayList<Task> tasks) {
         System.out.println(DIVIDER);
         if (tasks.isEmpty()) {
@@ -225,6 +338,9 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints an exit message when Duke is closed.
+     */
     public void printExitMessage() {
         System.out.println(DIVIDER);
         System.out.println("Bye. Hope to see you again soon!");

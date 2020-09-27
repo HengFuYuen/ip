@@ -10,18 +10,29 @@ import duke.command.Command;
 import duke.exception.DeadlineDescriptionNotFoundException;
 import duke.exception.DeadlineTimeNotFoundException;
 import duke.exception.DeleteNumberFormatException;
-import duke.exception.DeleteTaskIndexNotFoundException;
+import duke.exception.TaskIndexToDeleteNotFoundException;
 import duke.exception.EventDescriptionNotFoundException;
 import duke.exception.EventTimeNotFoundException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidTaskTypeException;
 import duke.exception.MarkAsDoneNumberFormatException;
-import duke.exception.MarkAsDoneTaskIndexNotFoundException;
+import duke.exception.TaskIndexToMarkAsDoneNotFoundException;
 import duke.exception.TodoDescriptionNotFoundException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * Represents a task manager that tracks different types of tasks.
+ * A <code>Duke</code> object corresponds to a task tracking application that has a
+ * <code>Storage</code> which saves tasks into the hard disk and loads any previously saved task, a
+ * <code>Ui</code> that is in charge of user interaction, a <code>Parser</code> that deciphers the user
+ * command and a <code>TaskList</code> that contains all the tasks and carries out operations related to
+ * adding, deleting, etc. of tasks to the task list.
+ *
+ * @author Heng Fu Yuen
+ * @version 2.0
+ */
 public class Duke {
 
     private TaskList tasks;
@@ -29,7 +40,27 @@ public class Duke {
     private final Ui ui;
     private final Parser parser;
 
-    public Duke(String dirPath, String filePath) {
+    /**
+     * The main method for <code>Duke</code>.
+     * Creates a new <code>Duke</code> object and runs it.
+     *
+     * @param args Unused.
+     */
+    public static void main(String[] args) {
+        String dirPath = "data";
+        String filePath = "data/duke.txt";
+        new Duke(dirPath,filePath).run();
+    }
+
+    /**
+     * Constructs a <code>Duke</code> object with a Storage that uses the directory and file path given,
+     * a Ui, a Parser and a TaskList and initializes it.
+     * Any previously saved tasks are also loaded.
+     *
+     * @param dirPath  Directory path that indicates the directory where the file storing tasks is saved.
+     * @param filePath File path where the file storing the tasks is found.
+     */
+    private Duke(String dirPath, String filePath) {
         ui = new Ui();
         parser = new Parser();
         try {
@@ -43,11 +74,15 @@ public class Duke {
         } catch (InvalidTaskTypeException e) {
             ui.printInvalidTaskTypeErrorMessage();
         } catch (IndexOutOfBoundsException e) {
-            ui.printIndexOutOfBoundsErrorMessage();
+            ui.printDukeFileCannotBeLoadedErrorMessage();
         }
     }
 
-    public void run() {
+    /**
+     * Runs the <code>Duke</code> application by continuously taking in the user command, deciphering it
+     * and executing it until the <code>Duke</code> application is exited.
+     */
+    private void run() {
         ui.printWelcomeMessage();
         boolean isExit = false;
         while (!isExit) {
@@ -56,14 +91,14 @@ public class Duke {
                 Command command = parser.parse(fullCommand);
                 command.execute(tasks, ui, storage);
                 isExit = command.isExit();
-            } catch (MarkAsDoneTaskIndexNotFoundException e) {
-                ui.printMarkAsDoneTaskIndexNotFoundErrorMessage(tasks.getRangeOfValidTaskNumber());
-            } catch (DeleteTaskIndexNotFoundException e) {
-                ui.printDeleteTaskIndexNotFoundErrorMessage(tasks.getRangeOfValidTaskNumber());
+            } catch (TaskIndexToMarkAsDoneNotFoundException e) {
+                ui.printTaskIndexToMarkAsDoneNotFoundErrorMessage(tasks.getRangeOfValidTaskIndex());
+            } catch (TaskIndexToDeleteNotFoundException e) {
+                ui.printTaskIndexToDeleteNotFoundErrorMessage(tasks.getRangeOfValidTaskIndex());
             } catch (MarkAsDoneNumberFormatException e) {
-                ui.printInvalidTaskToMarkAsDoneIndexErrorMessage(tasks.getRangeOfValidTaskNumber());
+                ui.printInvalidTaskIndexToMarkAsDoneErrorMessage(tasks.getRangeOfValidTaskIndex());
             } catch (DeleteNumberFormatException e) {
-                ui.printInvalidTaskToDeleteIndexErrorMessage(tasks.getRangeOfValidTaskNumber());
+                ui.printInvalidTaskIndexToDeleteErrorMessage(tasks.getRangeOfValidTaskIndex());
             } catch (TodoDescriptionNotFoundException e) {
                 ui.printTodoDescriptionNotFoundErrorMessage();
             } catch (DeadlineDescriptionNotFoundException e) {
@@ -75,12 +110,8 @@ public class Duke {
             } catch (EventTimeNotFoundException e) {
                 ui.printEventTimeNotFoundErrorMessage();
             } catch (InvalidCommandException e) {
-                ui.printInvalidCommandErrorMessage(tasks.getRangeOfValidTaskNumber());
+                ui.printInvalidCommandErrorMessage(tasks.getRangeOfValidTaskIndex());
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke("data","data/duke.txt").run();
     }
 }

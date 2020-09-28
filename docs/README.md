@@ -2,9 +2,9 @@
 Duke is a desktop application for managing tasks using **Command Line Interface**.
 
 ## Quick start
-1. Ensure that your computer has java `11`installed.
+1. Ensure that your computer has java `11` installed.
 
-1. Download the latest`ip.jar`.
+1. Download the latest `ip.jar`.
 
 1. Copy the jar file to an empty folder you want to use as the home folder for Duke.
 
